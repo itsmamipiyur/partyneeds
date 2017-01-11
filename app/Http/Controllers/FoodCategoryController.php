@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class FoodController extends Controller
+class FoodCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,6 @@ class FoodController extends Controller
     public function index()
     {
         //
-        $categories = ['1' => 'Chick',
-                     '2' => 'Bif',
-                     '3' => 'Por'];
-        return view('maintenance/food', ['categories' => $categories]);
     }
 
     /**
@@ -39,8 +36,7 @@ class FoodController extends Controller
     public function store(Request $request)
     {
         //
-        $rules = ['food_name' => 'required | max:100',
-                  'food_category' => 'required'];
+        $rules = ['category_name' => 'required | max:100'];
 
         $this->validate($request, $rules);
     }
@@ -77,6 +73,7 @@ class FoodController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**

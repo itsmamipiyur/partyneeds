@@ -1,11 +1,10 @@
 body{
-  background-color: #34495e;
-  padding: 0;
-  margin: 0;
+  background-image: url('../images/2144.jpg');
+  background-size: cover;
 }
 
 .sidebar{
-  background-color: #16a085;
+  background-color: rgba(52, 73, 94, .5);
   color: white;
   height: 720px;
   margin: 0;
@@ -22,7 +21,8 @@ a:hover {
 }
 
 h1, h2{
-  color: white;
+  color: black;
+  font-weight: bold;
 }
 
 .content{
