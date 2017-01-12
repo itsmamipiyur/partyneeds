@@ -103,13 +103,12 @@ class EquipmentTypeController extends Controller
     public function equipmentType_update(Request $request)
     {
       $rules = ['equipment_type_name' => 'required | max:100'];
-      $id = $request->customer_id;
+      $id = $request->equipment_type_id;
 
       $this->validate($request, $rules);
       $equipmentType = EquipmentType::find($id);
-      $equipmentType->strEquiTypeId = $request->equipment_type_id;
       $equipmentType->strEquiTypeName = $request->equipment_type_name;
-      $equipmentType->strEquiTypeDesc = $request->equipment_type_desc;
+      $equipmentType->txtEquiTypeDesc = $request->equipment_type_desc;
       $equipmentType->save();
 
       return redirect('equipment')->with('alert-success', 'Equipment Type ' . $id . ' was successfully updated.');
