@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserAccount extends Model
 {
     //
-    protected $table = 'tbluser';
-    protected $primaryKey = 'strUserId';
-    protected $fillable = ['strUserPassword', 'strUserName'];
+    protected $table = 'tblstaff';
+    protected $primaryKey = 'strStafId';
+    protected $fillable = ['strStafFirst', 'strStafMiddle', 'strStafLast', 'strStafPassword', 'intStafIsAdmin'];
 }

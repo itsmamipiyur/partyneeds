@@ -22,11 +22,14 @@ class LoginController extends Controller
       $user = UserAccount::find($request->inputUsername);
 
       if($user == null){
-        return view('login')->with('alert-failed', 'User Name not found!');
+        return view('login')->with('alert-danger', 'User Name not found!');
       }
-      if($user->strUserPassword == $request->inputPassword){
-        session(['user_id' => $user->strUserId, 'user_name' => $user->strUserName]);
+      if($user->strStafPassword == $request->inputPassword){
+        session(['user_id' => $user->strStafId, 'user_name' => $user->strStafFirst .' '. $user->strStafLast]);
         return view('maintenance/customer');
+      }
+      else{
+        return view('login')->with('alert-danger', 'Username/Password does not match!');
       }
     }
 

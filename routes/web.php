@@ -20,6 +20,10 @@ Route::post('/', 'LoginController@checkAccount');
 Route::get('/', 'LoginController@index');
 Route::get('/logout', 'LoginController@logoutAccount');
 
+Route::post('/customer/customer_update', 'CustomerController@customer_update');
+Route::post('/customer/customer_restore', 'CustomerController@customer_restore');
+
+
 Route::group(['middleware' => ['web']], function(){
     Route::resource('customer', 'CustomerController');
     Route::resource('food', 'FoodController');
