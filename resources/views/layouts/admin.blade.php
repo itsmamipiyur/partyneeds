@@ -17,7 +17,7 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{ url('/') }}">PNMS</a>
+          <a class="navbar-brand" href="{{ url('/') }}">Party Needs Management System</a>
         </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a class="btn btn-default" href="{{ url('/logout') }}">Logout</a></li>

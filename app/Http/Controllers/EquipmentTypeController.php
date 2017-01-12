@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\EquipmentType;
+use Response;
 
 class EquipmentTypeController extends Controller
 {
@@ -95,7 +96,7 @@ class EquipmentTypeController extends Controller
         //
         $equipmentType = EquipmentType::find($id);
         $name = $equipmentType->strEquiTypeName;
-        $customer->delete();
+        $equipmentType->delete();
 
         return redirect('equipment')->with('alert-success', 'Customer '. $name .' was successfully deleted.');
     }
@@ -103,13 +104,12 @@ class EquipmentTypeController extends Controller
     public function equipmentType_update(Request $request)
     {
       $rules = ['equipment_type_name' => 'required | max:100'];
-      $id = $request->customer_id;
+      $id = $request->equipment_type_id;
 
       $this->validate($request, $rules);
       $equipmentType = EquipmentType::find($id);
-      $equipmentType->strEquiTypeId = $request->equipment_type_id;
       $equipmentType->strEquiTypeName = $request->equipment_type_name;
-      $equipmentType->strEquiTypeDesc = $request->equipment_type_desc;
+      $equipmentType->txtEquiTypeDesc = $request->equipment_type_desc;
       $equipmentType->save();
 
       return redirect('equipment')->with('alert-success', 'Equipment Type ' . $id . ' was successfully updated.');
@@ -117,9 +117,9 @@ class EquipmentTypeController extends Controller
 
     public function equipmentType_restore(Request $request)
     {
-      $id = $request->customer_id;
-      $customer = Customer::onlyTrashed()->where('strCustId', '=', $id)->firstOrFail();
-      $customer->restore();
+      $id = $request->equipment_type_id;
+      $equipmentType = EquipmentType::onlyTrashed()->where('strEquiTypeId', '=', $id)->firstOrFail();
+      $equipmentType->restore();
 
       return redirect('equipment')->with('alert-success', 'Customer ' . $id . ' was successfully restored.');
     }

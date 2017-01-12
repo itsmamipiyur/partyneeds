@@ -1,5 +1,13 @@
 @extends('layouts.admin')
 
+@section('error')
+  @if ($alert = Session::get('alert-success'))
+    <div class="alert alert-success">
+        <strong>{{ $alert }}</strong>
+    </div>
+  @endif
+@endsection
+
 @section('content')
 <h2>maintenance/Equipment</h2>
 <hr size="5">
@@ -11,8 +19,15 @@
     </div>
     <div class="panel-body">
       <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#createEquipmentType">Add Equipment Type</button>
+      <br><br>
+      <div class="pull-right">
+        <label class="checkbox-inline">
+      			<input type="checkbox" id="show_deletedType">
+      			Show Deleted Items
+      		</label>
+      </div>
       <br>
-      <table class="table table-hover" id="tblBranch">
+      <table class="table table-hover" id="tblEquipmentType">
         <thead>
           <tr>
             <th>Equipment Type ID</th>
@@ -30,7 +45,7 @@
               <td colspan="7" align="center"><strong>Nothing to show</strong></td>
             </tr>
 
-          <!--IF tbl customer is not null-->
+          <!--IF tbl equipmentType is not null-->
           @else
             @foreach($equipmentTypes as $equipmentType)
               <tr>
@@ -42,16 +57,16 @@
                 <td>{{ $equipmentType->deleted_at }}</td>
                 <td class="btn-group clearfix" align="center" nowrap>
                    <button type="button" value="{{ $equipmentType->strEquiTypeId }}" class="btn btn-success open-detail"><span class="glyphicon glyphicon-eye-open"></span></button>
-                   <a href="#edit{{ $equipmentType->strEquiTypeId }}" class="btn btn-info edit-detail" onclick="$('#edit{{$customer->strCustId}}').modal('show')"><span class="glyphicon glyphicon-pencil"></span></a>
-                   @if(is_null($customer->deleted_at))
+                   <a href="#edit{{ $equipmentType->strEquiTypeId }}" class="btn btn-info edit-detail" onclick="$('#edit{{$equipmentType->strEquiTypeId}}').modal('show')"><span class="glyphicon glyphicon-pencil"></span></a>
+                   @if(is_null($equipmentType->deleted_at))
                     <a href="#del{{$equipmentType->strEquiTypeId}}" class="btn btn-danger" onclick="$('#del{{$equipmentType->strEquiTypeId}}').modal('show')"><span class="glyphicon glyphicon-trash"></span></button>
                    @else
-                    <a href="#restore{{$customer->strCustId}}" class="btn btn-warning" onclick="$('#restore{{$equipmentType->strEquiTypeId}}').modal('show')"><span class="glyphicon glyphicon-repeat"></span></button>
+                    <a href="#restore{{$equipmentType->strEquiTypeId}}" class="btn btn-warning" onclick="$('#restore{{$equipmentType->strEquiTypeId}}').modal('show')"><span class="glyphicon glyphicon-repeat"></span></button>
                   @endif
                 </td>
               </tr>
 
-              <div id="del{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
+              <div id="del{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-header">
@@ -63,7 +78,7 @@
                       </div>
                       <div class="modal-footer">
 
-                        {!! Form::open(['url' => '/customer/' . $customer->strCustId, 'method' => 'delete']) !!}
+                        {!! Form::open(['url' => '/equipmentType/' . $equipmentType->strEquiTypeId, 'method' => 'delete']) !!}
                     			{{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-danger']) }}
                     		{!! Form::close() !!}
                         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
@@ -72,7 +87,7 @@
                 </div>
               </div>
 
-              <div id="restore{{$customer->strCustId}}" class="modal fade" role="dialog">
+              <div id="restore{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-header">
@@ -84,7 +99,7 @@
                       </div>
                       <div class="modal-footer">
                         {!! Form::open(['url' => '/equipmentType/equipmentType_restore']) !!}
-                          {{ Form::hidden('customer_id', $equipmentType->strEquiTypeId) }}
+                          {{ Form::hidden('equipment_type_id', $equipmentType->strEquiTypeId) }}
                     			{{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-warning']) }}
                     		{!! Form::close() !!}
                         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
@@ -260,7 +275,7 @@
         {!! Form::open(['url' => '/equipmentType']) !!}
           <div class="form-group">
           {{ Form::label('equipment_type_id', 'Equipment Type ID') }}
-          {{ Form::text('equipment_type_id', $newTypeID, ['class' => 'form-control', 'disabled' => 'true']) }}
+          {{ Form::text('equipment_type_id', $newTypeID, ['class' => 'form-control']) }}
           </div>
 
           <div class="form-group">
@@ -282,3 +297,43 @@
   </div>
 </div>
 @endsection
+
+@section('js')
+  <script>
+    $(document).ready( function(){
+      setTimeout(function(){
+          $('.alert').fadeOut("slow");
+      }, 2000);
+
+      var table = $('#tblEquipmentType').DataTable();
+
+      $('#show_deletedType').on('change', function () {
+				table.draw();
+			});
+
+      $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+				var show_deleted = $('#show_deletedType:checked').length;
+				if (!show_deleted) return aData[5] == '';
+				return true;
+			});
+			table.draw();
+
+      var url = "{{ url('/equipmentType') }}";
+      var bid = 0;
+
+      $('.open-detail').click(function(){
+        var id = $(this).val();
+        console.log(id);
+
+        $.get(url + '/' + id, function (data) {
+            //success data
+            console.log(data);
+            $('#equiTypeId').val(data.strEquiTypeId);
+            $('#equiTypeName').val(data.strEquiTypeName);
+            $('#equiTypeDesc').val(data.txtEquiTypeDesc);
+            $('#showEquiType').modal('show');
+        })
+      });
+    });
+  </script>
+  @endsection
