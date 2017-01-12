@@ -8,10 +8,17 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
   </head>
   <body>
+    @if(!Session::has('user_id'))
+      <script type="text/javascript">
+        window.location.href = '/';
+      </script>
+    @endif
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand" href="{{ url('/') }}">PNMS</a>
+          <a class="navbar-brand" href="{{ url('/') }}">PNMS</a>
+          <a class="pull-right" href="{{ url('/logout') }}">Logout</a>
         </div>
       </div>
     </nav>

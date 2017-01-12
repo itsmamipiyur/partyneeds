@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
 <h2>maintenance/Equipment</h2>
 <hr size="5">
 

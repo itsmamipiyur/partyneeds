@@ -11,9 +11,14 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::post('/', 'LoginController@checkAccount');
+Route::get('/', 'LoginController@index');
+Route::get('/logout', 'LoginController@logoutAccount');
 
 Route::group(['middleware' => ['web']], function(){
     Route::resource('customer', 'CustomerController');
