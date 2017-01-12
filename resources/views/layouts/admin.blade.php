@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Party Needs System - Admin</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+    <!--<link rel="stylesheet" href="{{ asset('css/app.css') }}"/>-->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
   </head>
   <body>

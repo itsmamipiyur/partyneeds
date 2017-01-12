@@ -5,11 +5,13 @@
 <h2>maintenance/Customer</h2>
 <hr size="5">
 
-<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#create">Add Customer</button>
-<br><br>
-
-<div class="panel panel-default">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Customer List</h3>
+  </div>
   <div class="panel-body">
+    <button type="button" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#create">Add Customer</button>
+    <br><br>
     <table class="table table-hover" id="tblBranch">
       <thead>
         <tr>
