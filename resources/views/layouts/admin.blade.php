@@ -18,8 +18,12 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="{{ url('/') }}">PNMS</a>
-          <a class="pull-right" href="{{ url('/logout') }}">Logout</a>
         </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="btn btn-default" href="{{ url('/logout') }}">Logout</a></li>
+          </ul>
+
+
       </div>
     </nav>
 

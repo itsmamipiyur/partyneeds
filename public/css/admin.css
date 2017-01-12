@@ -12,6 +12,21 @@ body{
   margin-top: -22px;
 }
 
+.btn-default{
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: transparent;
+
+}
+.navbar-right{
+  float: right;
+
+}
+
+
 .sidebar a{
   font-size: 18px;
   color: white;
@@ -45,6 +60,7 @@ h1, h2{
     -webkit-user-select: none;
     user-select: none;
     cursor: default;
+
 }
 
 /*

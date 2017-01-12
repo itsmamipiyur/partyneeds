@@ -41,7 +41,7 @@
 <div class="row">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Food</h3>
+      <h3 class="panel-title">Food List</h3>
     </div>
     <div class="panel-body">
       <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#create">Add Food</button>
