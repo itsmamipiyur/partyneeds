@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\EquipmentType;
 
 class EquipmentController extends Controller
 {
@@ -14,10 +15,27 @@ class EquipmentController extends Controller
      */
     public function index()
     {
+
       $type = ['1' => 'Serving Equipment',
                    '2' => 'Buffet Eqauipment',
                    '3' => 'Beverages Equipment'];
-      return view('maintenance/equipment', ['type' => $type]);
+
+       $ids = \DB::table('tblEquipmentType')
+           ->select('strEquiTypeId')
+           ->orderBy('strEquiTypeId', 'desc')
+           ->first();
+
+       if ($ids == null) {
+         $newTypeID = $this->smartCounter("EQUITYPE0000");
+       }else{
+         $newTypeID = $this->smartCounter($ids->strEquiTypeId);
+       }
+
+       $equipmentTypes = EquipmentType::withTrashed()->get();
+
+      return view('maintenance/equipment', ['type' => $type])
+        ->with('newTypeID', $newTypeID)
+        ->with('equipmentTypes', $equipmentTypes);
     }
 
     /**
@@ -87,5 +105,38 @@ class EquipmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function smartCounter($id)
+    {
+        $lastID = str_split($id);
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+            $tempID = $lastID[$ctr];
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }
+            }
+            $tempNew[$ctr] = $tempID;
+        }
+
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+        return $newID;
     }
 }

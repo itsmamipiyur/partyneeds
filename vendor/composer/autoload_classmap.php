@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddTimestampToTblCustomer' => $baseDir . '/database/migrations/2017_01_12_051243_add_timestamp_to_tblCustomer.php',
-    'AddTimestampToTblStaff' => $baseDir . '/database/migrations/2017_01_12_064924_add_timestamp_to_tblStaff.php',
+    'AddTimestampsToTblEquipmentType' => $baseDir . '/database/migrations/2017_01_12_072624_add_timestamps_to_tblEquipmentType.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

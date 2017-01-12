@@ -18,18 +18,112 @@
             <th>Equipment Type ID</th>
             <th>Equipment Type Name</th>
             <th>Description</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Deleted At</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>EQUIPTYPE0001</td>
-            <td>Serving Equipment</td>
-            <td>Catering Equipment</td>
-            <td>
-              lol
-            </td>
-          </tr>
+          @if(count($equipmentTypes) === 0)
+            <tr>
+              <td colspan="7" align="center"><strong>Nothing to show</strong></td>
+            </tr>
+
+          <!--IF tbl customer is not null-->
+          @else
+            @foreach($equipmentTypes as $equipmentType)
+              <tr>
+                <td>{{ $equipmentType->strEquiTypeId }}</td>
+                <td>{{ $equipmentType->strEquiTypeName }}</td>
+                <td>{{ $equipmentType->txtEquiTypeText }}</td>
+                <td>{{ $equipmentType->created_at }}</td>
+                <td>{{ $equipmentType->updated_at }}</td>
+                <td>{{ $equipmentType->deleted_at }}</td>
+                <td class="btn-group clearfix" align="center" nowrap>
+                   <button type="button" value="{{ $equipmentType->strEquiTypeId }}" class="btn btn-success open-detail"><span class="glyphicon glyphicon-eye-open"></span></button>
+                   <a href="#edit{{ $equipmentType->strEquiTypeId }}" class="btn btn-info edit-detail" onclick="$('#edit{{$customer->strCustId}}').modal('show')"><span class="glyphicon glyphicon-pencil"></span></a>
+                   @if(is_null($customer->deleted_at))
+                    <a href="#del{{$equipmentType->strEquiTypeId}}" class="btn btn-danger" onclick="$('#del{{$equipmentType->strEquiTypeId}}').modal('show')"><span class="glyphicon glyphicon-trash"></span></button>
+                   @else
+                    <a href="#restore{{$customer->strCustId}}" class="btn btn-warning" onclick="$('#restore{{$equipmentType->strEquiTypeId}}').modal('show')"><span class="glyphicon glyphicon-repeat"></span></button>
+                  @endif
+                </td>
+              </tr>
+
+              <div id="del{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delete Equipment Type</h4>
+                      </div>
+                      <div class="modal-body">
+                        <h5>Are you sure to delete <strong>{{ $equipmentType->strEquiTypeName }}</strong>?</h5>
+                      </div>
+                      <div class="modal-footer">
+
+                        {!! Form::open(['url' => '/customer/' . $customer->strCustId, 'method' => 'delete']) !!}
+                    			{{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-danger']) }}
+                    		{!! Form::close() !!}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="restore{{$customer->strCustId}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Restore Equipment Type</h4>
+                      </div>
+                      <div class="modal-body">
+                        <h5>Are you sure to restore <strong>{{ $equipmentType->strEquiTypeName }}</strong>?</h5>
+                      </div>
+                      <div class="modal-footer">
+                        {!! Form::open(['url' => '/equipmentType/equipmentType_restore']) !!}
+                          {{ Form::hidden('customer_id', $equipmentType->strEquiTypeId) }}
+                    			{{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-warning']) }}
+                    		{!! Form::close() !!}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="edit{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Update Equipment Type</h4>
+                    </div>
+                    <div class="modal-body">
+                      {!! Form::open(['url' => 'equipmentType/equipmentType_update/']) !!}
+                        {{ Form::hidden('equipment_type_id', $equipmentType->strEquiTypeId) }}
+                        <div class="form-group">
+                        {{ Form::label('equipment_type_name', 'Equipment Type Name') }}
+                        {{ Form::text('equipment_type_name', $equipmentType->strEquiTypeName, ['placeholder' => 'Type Equipment Type Name', 'class' => 'form-control']) }}
+                        </div>
+
+                        <div class="form-group">
+                        {{ Form::label('equipment_type_desc', 'Description') }}
+                        {{ Form::textarea('equipment_type_desc', $equipmentType->strEquiTypeDesc, ['placeholder' => 'Type Equipment Type Description', 'class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      {{ Form::button('Update', ['type' => 'submit', 'class' => 'btn btn-info', 'id' => 'btn-save']) }}
+                    {!! Form::close() !!}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          @endif
         </tbody>
       </table>
     </div>
@@ -37,6 +131,38 @@
 </div>
 
 
+<div id="showEquiType" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Equipment Type Details</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+          {{ Form::label('equipment_type_id', 'Equipment Type ID') }}
+          {{ Form::text('equipment_type_id', '', ['class' => 'form-control', 'id' => 'equiTypeId', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('equipment_type_name', 'Equipment Type Name') }}
+          {{ Form::text('equipment_type_name', '', ['class' => 'form-control', 'id' => 'equiTypeName', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('equipment_type_desc', 'Description') }}
+          {{ Form::textarea('equipment_type_desc', '', ['class' => 'form-control', 'id' => 'equiTypeDesc', 'disabled' => 'true']) }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--EQUIPMENT-->
 <div class="row">
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -136,7 +262,12 @@
             </div>
         @endif
 
-        {!! Form::open(['url' => '/equiptype']) !!}
+        {!! Form::open(['url' => '/equipmentType']) !!}
+          <div class="form-group">
+          {{ Form::label('equipment_type_id', 'Equipment Type ID') }}
+          {{ Form::text('equipment_type_id', $newTypeID, ['class' => 'form-control', 'disabled' => 'true']) }}
+          </div>
+
           <div class="form-group">
           {{ Form::label('equipment_type_name', 'Equipment Type Name') }}
           {{ Form::text('equipment_type_name', '', ['placeholder' => 'Example: Serving Equipment', 'class' => 'form-control']) }}

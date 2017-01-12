@@ -23,10 +23,14 @@ Route::get('/logout', 'LoginController@logoutAccount');
 Route::post('/customer/customer_update', 'CustomerController@customer_update');
 Route::post('/customer/customer_restore', 'CustomerController@customer_restore');
 
+Route::post('/equipmentType/equipmentType_update', 'EquipmentTypeController@equipmentType_update');
+Route::post('/equipmentType/equipmentType_restore', 'EquipmentTypeController@equipmentType_restore');
+
 
 Route::group(['middleware' => ['web']], function(){
     Route::resource('customer', 'CustomerController');
     Route::resource('food', 'FoodController');
     Route::resource('equipment', 'EquipmentController');
+    Route::resource('equipmentType', 'EquipmentTypeController');
     Route::resource('staff', 'StaffController');
 });
