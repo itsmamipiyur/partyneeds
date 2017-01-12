@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\EquipmentType;
+use App\Equipment;
 
 class EquipmentController extends Controller
 {
@@ -15,14 +16,13 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-
-      $type = ['1' => 'Serving Equipment',
-                   '2' => 'Buffet Eqauipment',
-                   '3' => 'Beverages Equipment'];
-
        $ids = \DB::table('tblEquipmentType')
            ->select('strEquiTypeId')
            ->orderBy('strEquiTypeId', 'desc')
+           ->first();
+       $idss = \DB::table('tblEquipment')
+           ->select('strEquiId')
+           ->orderBy('strEquiId', 'desc')
            ->first();
 
        if ($ids == null) {
@@ -31,11 +31,22 @@ class EquipmentController extends Controller
          $newTypeID = $this->smartCounter($ids->strEquiTypeId);
        }
 
-       $equipmentTypes = EquipmentType::withTrashed()->get();
+       if ($idss == null) {
+         $newID = $this->smartCounter("EQUI0000");
+       }else{
+         $newID = $this->smartCounter($idss->strEquiId);
+       }
 
-      return view('maintenance/equipment', ['type' => $type])
+       $equipmentTypes = EquipmentType::withTrashed()->get();
+       $equiTypes = EquipmentType::orderBy('strEquiTypeName')->pluck('strEquiTypeName', 'strEquiTypeId');
+       $equipments = Equipment::withTrashed()->get();
+
+      return view('maintenance/equipment')
         ->with('newTypeID', $newTypeID)
-        ->with('equipmentTypes', $equipmentTypes);
+        ->with('newID', $newID)
+        ->with('equipmentTypes', $equipmentTypes)
+        ->with('equiTypes', $equiTypes)
+        ->with('equipments', $equipments);
     }
 
     /**
@@ -60,6 +71,15 @@ class EquipmentController extends Controller
                 'equipment_type' => 'required'];
 
       $this->validate($request, $rules);
+      $equipment = new Equipment;
+
+      $equipment->strEquiId = trim($request->equipment_id);
+      $equipment->strEquiName = trim($request->equipment_name);
+      $equipment->txtEquiDesc = trim($request->equipment_description);
+      $equipment->strEquiTypeId = trim($request->equipment_type);
+      $equipment->save();
+
+      return redirect('equipment')->with('alert-success', 'Equipments was successfully saved.');
     }
 
     /**

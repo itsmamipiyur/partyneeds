@@ -285,6 +285,7 @@ class ComposerStaticInit7562766ff37640d8edc87b42d0fc629e
 
     public static $classMap = array (
         'AddTimestampToTblCustomer' => __DIR__ . '/../..' . '/database/migrations/2017_01_12_051243_add_timestamp_to_tblCustomer.php',
+        'AddTimestampsToTblEquipment' => __DIR__ . '/../..' . '/database/migrations/2017_01_12_093714_add_timestamps_to_tblEquipment.php',
         'AddTimestampsToTblEquipmentType' => __DIR__ . '/../..' . '/database/migrations/2017_01_12_072624_add_timestamps_to_tblEquipmentType.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
