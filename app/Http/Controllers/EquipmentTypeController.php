@@ -98,7 +98,7 @@ class EquipmentTypeController extends Controller
         $name = $equipmentType->strEquiTypeName;
         $equipmentType->delete();
 
-        return redirect('equipment')->with('alert-success', 'Customer '. $name .' was successfully deleted.');
+        return redirect('equipment')->with('alert-success', 'Equipment Type '. $name .' was successfully deleted.');
     }
 
     public function equipmentType_update(Request $request)
@@ -121,7 +121,7 @@ class EquipmentTypeController extends Controller
       $equipmentType = EquipmentType::onlyTrashed()->where('strEquiTypeId', '=', $id)->firstOrFail();
       $equipmentType->restore();
 
-      return redirect('equipment')->with('alert-success', 'Customer ' . $id . ' was successfully restored.');
+      return redirect('equipment')->with('alert-success', 'Equipment Type ' . $id . ' was successfully restored.');
     }
 
 

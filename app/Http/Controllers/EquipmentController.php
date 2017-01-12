@@ -79,7 +79,7 @@ class EquipmentController extends Controller
       $equipment->strEquiTypeId = trim($request->equipment_type);
       $equipment->save();
 
-      return redirect('equipment')->with('alert-success', 'Equipments was successfully saved.');
+      return redirect('equipment')->with('alert-success', 'Equipment was successfully saved.');
     }
 
     /**
@@ -124,8 +124,37 @@ class EquipmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $equipment = Equipment::find($id);
+      $name = $equipment->strEquiName;
+      $equipment->delete();
+
+      return redirect('equipment')->with('alert-success', 'Equipment '. $name .' was successfully deleted.');
     }
+
+    public function equipment_update(Request $request)
+    {
+      $rules = ['equipment_name' => 'required | max:100',
+                'equipment_type' => 'required'];
+
+      $this->validate($request, $rules);
+      $equipment = Equipment::find($request->equipment_id);
+      $equipment->strEquiName = trim($request->equipment_name);
+      $equipment->txtEquiDesc = trim($request->equipment_description);
+      $equipment->strEquiTypeId = trim($request->equipment_type);
+      $equipment->save();
+
+      return redirect('equipment')->with('alert-success', 'Equipment ' . $request->equipment_id . ' was successfully updated.');
+    }
+
+    public function equipment_restore(Request $request)
+    {
+      $id = $request->equipment_id;
+      $equipment = Equipment::onlyTrashed()->where('strEquiTypeId', '=', $id)->firstOrFail();
+      $equipment->restore();
+
+      return redirect('equipment')->with('alert-success', 'Equipment ' . $id . ' was successfully restored.');
+    }
+
 
     public function smartCounter($id)
     {

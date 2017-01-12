@@ -26,6 +26,9 @@ Route::post('/customer/customer_restore', 'CustomerController@customer_restore')
 Route::post('/equipmentType/equipmentType_update', 'EquipmentTypeController@equipmentType_update');
 Route::post('/equipmentType/equipmentType_restore', 'EquipmentTypeController@equipmentType_restore');
 
+Route::post('/equipment/equipment_update', 'EquipmentController@equipment_update');
+Route::post('/equipment/equipment_restore', 'EquipmentController@equipment_restore');
+
 
 Route::group(['middleware' => ['web']], function(){
     Route::resource('customer', 'CustomerController');

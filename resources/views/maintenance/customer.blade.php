@@ -44,7 +44,7 @@
       </thead>
       <tbody>
         <!--IF tbl customer is null-->
-        @if(count($customers) === 0)
+        @if($customers->count() == 0)
           <tr>
             <td colspan="8" align="center"><strong>Nothing to show</strong></td>
           </tr>
