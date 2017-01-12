@@ -331,10 +331,13 @@
           {{ Form::text('equipment_id', $newID, ['class' => 'form-control']) }}
           </div>
 
+<<<<<<< HEAD
           <div class="form-group">
           {{ Form::label('equipment_name', 'Equipment Name') }}
           {{ Form::text('equipment_name', '', ['placeholder' => 'Example: Trays', 'class' => 'form-control']) }}
           </div>
+=======
+>>>>>>> 6933d1ac23979f4cce1a2c309d3eed354597c64f
 
           <div class="control-group">
           {{ Form::label('equipment_type', 'Equipment Type', ['class' => 'control-label']) }}
