@@ -223,11 +223,6 @@
           </div>
 
 
-          <div class="form-group">
-          {{ Form::label('equip_type', 'Equipment Type') }}
-          {{ Form::text('equip_type', '', ['placeholder' => 'Example: Serving Equipment', 'class' => 'form-control']) }}
-          </div>
-
           <div class="control-group">
           {{ Form::label('equip_type', 'Equipment Type', ['class' => 'control-label']) }}
           {{ Form::select('equip_type', $type, null, ['placeholder' => 'Choose Equipment Type', 'class' => 'form-control', 'id' => 'category']) }}

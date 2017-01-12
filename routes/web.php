@@ -33,4 +33,5 @@ Route::group(['middleware' => ['web']], function(){
     Route::resource('equipment', 'EquipmentController');
     Route::resource('equipmentType', 'EquipmentTypeController');
     Route::resource('staff', 'StaffController');
+    Route::resource('package', 'PackageController');
 });
