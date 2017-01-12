@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\EquipmentType;
+use Response;
 
 class EquipmentTypeController extends Controller
 {
@@ -95,7 +96,7 @@ class EquipmentTypeController extends Controller
         //
         $equipmentType = EquipmentType::find($id);
         $name = $equipmentType->strEquiTypeName;
-        $customer->delete();
+        $equipmentType->delete();
 
         return redirect('equipment')->with('alert-success', 'Customer '. $name .' was successfully deleted.');
     }
@@ -116,9 +117,9 @@ class EquipmentTypeController extends Controller
 
     public function equipmentType_restore(Request $request)
     {
-      $id = $request->customer_id;
-      $customer = Customer::onlyTrashed()->where('strCustId', '=', $id)->firstOrFail();
-      $customer->restore();
+      $id = $request->equipment_type_id;
+      $equipmentType = EquipmentType::onlyTrashed()->where('strEquiTypeId', '=', $id)->firstOrFail();
+      $equipmentType->restore();
 
       return redirect('equipment')->with('alert-success', 'Customer ' . $id . ' was successfully restored.');
     }

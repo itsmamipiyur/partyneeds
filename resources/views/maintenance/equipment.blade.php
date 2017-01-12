@@ -19,8 +19,15 @@
     </div>
     <div class="panel-body">
       <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#createEquipmentType">Add Equipment Type</button>
+      <br><br>
+      <div class="pull-right">
+        <label class="checkbox-inline">
+      			<input type="checkbox" id="show_deletedType">
+      			Show Deleted Items
+      		</label>
+      </div>
       <br>
-      <table class="table table-hover" id="tblBranch">
+      <table class="table table-hover" id="tblEquipmentType">
         <thead>
           <tr>
             <th>Equipment Type ID</th>
@@ -59,7 +66,7 @@
                 </td>
               </tr>
 
-              <div id="del{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
+              <div id="del{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-header">
@@ -295,3 +302,43 @@
   </div>
 </div>
 @endsection
+
+@section('js')
+  <script>
+    $(document).ready( function(){
+      setTimeout(function(){
+          $('.alert').fadeOut("slow");
+      }, 2000);
+
+      var table = $('#tblEquipmentType').DataTable();
+
+      $('#show_deletedType').on('change', function () {
+				table.draw();
+			});
+
+      $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+				var show_deleted = $('#show_deletedType:checked').length;
+				if (!show_deleted) return aData[5] == '';
+				return true;
+			});
+			table.draw();
+
+      var url = "{{ url('/equipmentType') }}";
+      var bid = 0;
+
+      $('.open-detail').click(function(){
+        var id = $(this).val();
+        console.log(id);
+
+        $.get(url + '/' + id, function (data) {
+            //success data
+            console.log(data);
+            $('#equiTypeId').val(data.strEquiTypeId);
+            $('#equiTypeName').val(data.strEquiTypeName);
+            $('#equiTypeDesc').val(data.txtEquiTypeDesc);
+            $('#showEquiType').modal('show');
+        })
+      });
+    });
+  </script>
+  @endsection
