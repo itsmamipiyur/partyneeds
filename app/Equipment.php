@@ -17,6 +17,6 @@ class Equipment extends Model
 
   public function equipmentType()
   {
-      return $this->belongsTo('App\EquipmentType')->withTrashed();
+      return $this->belongsTo('App\EquipmentType', 'strEquiTypeId')->withTrashed();
   }
 }
