@@ -20,9 +20,12 @@
     <div class="row">
       <div class="col-lg-2 sidebar">
         <h3>Maintenance</h3>
+        <hr>
         <ul class="nav nav-sidebar">
           <li><a href="{{ url('/customer') }}">Customer</a></li>
           <li><a href="{{ url('/food') }}">Food</a></li>
+          <li><a href="{{ url('/equipment') }}">Equipment</a></li>
+          <li><a href="{{ url('/staff') }}">Staff</a></li>
         </ul>
       </div>
 

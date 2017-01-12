@@ -18,4 +18,6 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function(){
     Route::resource('customer', 'CustomerController');
     Route::resource('food', 'FoodController');
+    Route::resource('equipment', 'EquipmentController');
+    Route::resource('staff', 'StaffController');
 });
