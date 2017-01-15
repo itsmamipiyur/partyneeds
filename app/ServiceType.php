@@ -12,4 +12,5 @@ use SoftDeletes;
 protected $table = 'tblservicetype';
 protected $primaryKey = 'strServTypeId';
 protected $fillable = ['strServTypeName', 'txtServTypeDesc'];
+protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }

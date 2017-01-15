@@ -6,6 +6,17 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddTimestampToEventBooking' => $baseDir . '/database/migrations/2017_01_15_155634_add_timestamp_to_EventBooking.php',
+    'AddTimestampToEventMenu' => $baseDir . '/database/migrations/2017_01_15_155854_add_timestamp_to_EventMenu.php',
+    'AddTimestampToEventType' => $baseDir . '/database/migrations/2017_01_15_162528_add_timestamp_to_EventType.php',
+    'AddTimestampToFood' => $baseDir . '/database/migrations/2017_01_15_162551_add_timestamp_to_Food.php',
+    'AddTimestampToFoodCategory' => $baseDir . '/database/migrations/2017_01_15_162615_add_timestamp_to_FoodCategory.php',
+    'AddTimestampToFoodMenu' => $baseDir . '/database/migrations/2017_01_15_162632_add_timestamp_to_FoodMenu.php',
+    'AddTimestampToMenu' => $baseDir . '/database/migrations/2017_01_15_162646_add_timestamp_to_Menu.php',
+    'AddTimestampToMenuType' => $baseDir . '/database/migrations/2017_01_15_162704_add_timestamp_to_MenuType.php',
+    'AddTimestampToPackageMenu' => $baseDir . '/database/migrations/2017_01_15_162729_add_timestamp_to_PackageMenu.php',
+    'AddTimestampToService' => $baseDir . '/database/migrations/2017_01_15_162744_add_timestamp_to_Service.php',
+    'AddTimestampToServiceType' => $baseDir . '/database/migrations/2017_01_15_162758_add_timestamp_to_ServiceType.php',
     'AddTimestampToTblCustomer' => $baseDir . '/database/migrations/2017_01_12_051243_add_timestamp_to_tblCustomer.php',
     'AddTimestampToTblFoodCategory' => $baseDir . '/database/migrations/2017_01_13_065037_add_timestamp_to_tblFoodCategory.php',
     'AddTimestampsToTblEquipment' => $baseDir . '/database/migrations/2017_01_12_093714_add_timestamps_to_tblEquipment.php',

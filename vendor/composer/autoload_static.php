@@ -284,6 +284,17 @@ class ComposerStaticInit7562766ff37640d8edc87b42d0fc629e
     );
 
     public static $classMap = array (
+        'AddTimestampToEventBooking' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_155634_add_timestamp_to_EventBooking.php',
+        'AddTimestampToEventMenu' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_155854_add_timestamp_to_EventMenu.php',
+        'AddTimestampToEventType' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162528_add_timestamp_to_EventType.php',
+        'AddTimestampToFood' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162551_add_timestamp_to_Food.php',
+        'AddTimestampToFoodCategory' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162615_add_timestamp_to_FoodCategory.php',
+        'AddTimestampToFoodMenu' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162632_add_timestamp_to_FoodMenu.php',
+        'AddTimestampToMenu' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162646_add_timestamp_to_Menu.php',
+        'AddTimestampToMenuType' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162704_add_timestamp_to_MenuType.php',
+        'AddTimestampToPackageMenu' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162729_add_timestamp_to_PackageMenu.php',
+        'AddTimestampToService' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162744_add_timestamp_to_Service.php',
+        'AddTimestampToServiceType' => __DIR__ . '/../..' . '/database/migrations/2017_01_15_162758_add_timestamp_to_ServiceType.php',
         'AddTimestampToTblCustomer' => __DIR__ . '/../..' . '/database/migrations/2017_01_12_051243_add_timestamp_to_tblCustomer.php',
         'AddTimestampToTblFoodCategory' => __DIR__ . '/../..' . '/database/migrations/2017_01_13_065037_add_timestamp_to_tblFoodCategory.php',
         'AddTimestampsToTblEquipment' => __DIR__ . '/../..' . '/database/migrations/2017_01_12_093714_add_timestamps_to_tblEquipment.php',

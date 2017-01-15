@@ -11,6 +11,6 @@ class EventBooking extends Model
 use SoftDeletes;
 protected $table = 'tbleventbooking';
 protected $primaryKey = 'strEvenBookId';
-protected $fillable = ['strEvenBookCustId', 'strEvenBookAddress', 'strEvenBookEvenTypeId', 'txtEvenBookDesc'];
-protected $dates = ['strEvenBookTransDate', 'dtmEvenBookSchedule'];
+protected $fillable = ['strEvenBookCustId', 'strEvenBookAddress', 'strEvenBookEvenTypeId', 'txtEvenBookDesc', 'strEvenBookTransDate', 'dtmEvenBookSchedule'];
+protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }
