@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('error')
   @if ($alert = Session::get('alert-success'))
@@ -6,6 +6,10 @@
         <strong>{{ $alert }}</strong>
     </div>
   @endif
+@endsection
+
+@section('title')
+  Customer
 @endsection
 
 
@@ -64,105 +68,107 @@
                  <button type="button" value="{{ $customer->strCustId }}" class="btn btn-success open-detail"><span class="glyphicon glyphicon-eye-open"></span></button>
                  <a href="#edit{{ $customer->strCustId }}" class="btn btn-info edit-detail" onclick="$('#edit{{$customer->strCustId}}').modal('show')"><span class="glyphicon glyphicon-pencil"></span></a>
                  @if(is_null($customer->deleted_at))
-                  <a href="#del{{$customer->strCustId}}" class="btn btn-danger" onclick="$('#del{{$customer->strCustId}}').modal('show')"><span class="glyphicon glyphicon-trash"></span></button>
+                  <a href="#del{{$customer->strCustId}}" class="btn btn-danger" onclick="$('#del{{$customer->strCustId}}').modal('show')"><span class="glyphicon glyphicon-trash"></span></a>
                  @else
-                  <a href="#restore{{$customer->strCustId}}" class="btn btn-warning" onclick="$('#restore{{$customer->strCustId}}').modal('show')"><span class="glyphicon glyphicon-repeat"></span></button>
+                  <a href="#restore{{$customer->strCustId}}" class="btn btn-warning" onclick="$('#restore{{$customer->strCustId}}').modal('show')"><span class="glyphicon glyphicon-repeat"></span></a>
                 @endif
               </td>
             </tr>
-
-            <div id="del{{$customer->strCustId}}" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Delete Branch</h4>
-                    </div>
-                    <div class="modal-body">
-                      <h5>Are you sure to delete <strong>{{ $customer->customer_name }}</strong>?</h5>
-                    </div>
-                    <div class="modal-footer">
-
-                      {!! Form::open(['url' => '/customer/' . $customer->strCustId, 'method' => 'delete']) !!}
-                  			{{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-danger']) }}
-                  		{!! Form::close() !!}
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="restore{{$customer->strCustId}}" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Delete Branch</h4>
-                    </div>
-                    <div class="modal-body">
-                      <h5>Are you sure to restore <strong>{{ $customer->customer_name }}</strong>?</h5>
-                    </div>
-                    <div class="modal-footer">
-                      {!! Form::open(['url' => '/customer/customer_restore']) !!}
-                        {{ Form::hidden('customer_id', $customer->strCustId) }}
-                  			{{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-warning']) }}
-                  		{!! Form::close() !!}
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="edit{{$customer->strCustId}}" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Update Branch</h4>
-                  </div>
-                  <div class="modal-body">
-                    {!! Form::open(['url' => 'customer/customer_update/']) !!}
-                      {{ Form::hidden('customer_id', $customer->strCustId) }}
-                      <div class="form-group">
-                      {{ Form::label('first_name', 'First Name') }}
-                      {{ Form::text('first_name', $customer->strCustFirst, ['placeholder' => 'Example: Juan', 'class' => 'form-control']) }}
-                      </div>
-
-                      <div class="form-group">
-                      {{ Form::label('middle_name', 'Middle Name') }}
-                      {{ Form::text('middle_name', $customer->strCustMiddle, ['placeholder' => 'Example: Dela', 'class' => 'form-control']) }}
-                      </div>
-
-                      <div class="form-group">
-                      {{ Form::label('last_name', 'Last Name') }}
-                      {{ Form::text('last_name', $customer->strCustLast, ['placeholder' => 'Example: Cruz', 'class' => 'form-control']) }}
-                      </div>
-
-                      <div class="form-group">
-                      {{ Form::label('address', 'Address') }}
-                      {{ Form::textarea('address', $customer->strCustAddress, ['placeholder' => 'Example: 123 Rizal Ave., Tondo, Manila', 'class' => 'form-control']) }}
-                      </div>
-
-                      <div class="form-group">
-                      {{ Form::label('contact', 'Contact Number') }}
-                      {{ Form::text('contact', $customer->strCustContact, ['placeholder' => 'Example: 09225458545', 'class' => 'form-control']) }}
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                    {{ Form::button('Update', ['type' => 'submit', 'class' => 'btn btn-info', 'id' => 'btn-save']) }}
-                  {!! Form::close() !!}
-                  </div>
-                </div>
-              </div>
-            </div>
           @endforeach
         @endif
       </tbody>
     </table>
   </div>
 </div>
+
+@foreach($customers as $customer)
+<div id="del{{$customer->strCustId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Customer</h4>
+        </div>
+        <div class="modal-body">
+          <h5>Are you sure to delete <strong>{{ $customer->strCustId }}</strong>?</h5>
+        </div>
+        <div class="modal-footer">
+
+          {!! Form::open(['url' => '/customer/' . $customer->strCustId, 'method' => 'delete']) !!}
+            {{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-danger']) }}
+          {!! Form::close() !!}
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="restore{{$customer->strCustId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Restore Customer</h4>
+        </div>
+        <div class="modal-body">
+          <h5>Are you sure to restore <strong>{{ $customer->strCustId }}</strong>?</h5>
+        </div>
+        <div class="modal-footer">
+          {!! Form::open(['url' => '/customer/customer_restore']) !!}
+            {{ Form::hidden('customer_id', $customer->strCustId) }}
+            {{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-warning']) }}
+          {!! Form::close() !!}
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="edit{{$customer->strCustId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Customer</h4>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['url' => 'customer/customer_update/']) !!}
+          {{ Form::hidden('customer_id', $customer->strCustId) }}
+          <div class="form-group">
+          {{ Form::label('first_name', 'First Name') }}
+          {{ Form::text('first_name', $customer->strCustFirst, ['placeholder' => 'Example: Juan', 'class' => 'form-control']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('middle_name', 'Middle Name') }}
+          {{ Form::text('middle_name', $customer->strCustMiddle, ['placeholder' => 'Example: Dela', 'class' => 'form-control']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('last_name', 'Last Name') }}
+          {{ Form::text('last_name', $customer->strCustLast, ['placeholder' => 'Example: Cruz', 'class' => 'form-control']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('address', 'Address') }}
+          {{ Form::textarea('address', $customer->strCustAddress, ['placeholder' => 'Example: 123 Rizal Ave., Tondo, Manila', 'class' => 'form-control']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('contact', 'Contact Number') }}
+          {{ Form::text('contact', $customer->strCustContact, ['placeholder' => 'Example: 09225458545', 'class' => 'form-control']) }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        {{ Form::button('Update', ['type' => 'submit', 'class' => 'btn btn-info', 'id' => 'btn-save']) }}
+      {!! Form::close() !!}
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
 
 
 <div id="create" class="modal fade" role="dialog">
@@ -278,6 +284,12 @@
       setTimeout(function(){
           $('.alert').fadeOut("slow");
       }, 2000);
+
+      $('#maintenance').addClass("in");
+      $('#customer').addClass("active");
+      $('#transMenu').on('click', function(){
+        $('#maintenance').collapse("hide");
+      });
 
       var table = $('#tblCustomer').DataTable();
 

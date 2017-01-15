@@ -5,11 +5,45 @@ body{
 }
 
 .sidebar{
-  background-color: rgba(52, 73, 94, .75);
+  background-color: rgba(52, 73, 94, 0.9);
   color: white;
-  height: 900px;
+  height: 100%;
   margin: 0;
-  margin-top: -22px;
+  padding: 0;
+}
+
+.main{
+  margin: 0;
+  margin-top: -20px;
+  margin-left: -30px;
+}
+
+.menu-list{
+  list-style: none;
+  text-align: left;
+}
+
+.submenu{
+  background-color: rgba(236, 240, 241, 1.0);
+}
+
+.submenu ul li a{
+  color: black;
+}
+
+.active{
+  background-color: rgba(230, 126, 34,1.0);
+}
+
+.menu-list li a{
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.menu-list li a:hover{
+  background-color: rgba(255, 255, 255, 0.5);;
 }
 
 .btn-default{
@@ -30,11 +64,6 @@ body{
 .sidebar a{
   font-size: 14px;
   color: white;
-}
-
-a:hover {
-  background-color: black;
-  color: black;
 }
 
 h1, h2{

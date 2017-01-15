@@ -1,6 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
+
+@section('title')
+  Food
+@endsection
 
 <h2>maintenance/Food</h2>
 <hr size="5">
@@ -157,3 +161,51 @@
   </div>
 </div>
 @endsection
+
+@section('js')
+  <script>
+    $(document).ready( function(){
+      setTimeout(function(){
+          $('.alert').fadeOut("slow");
+      }, 2000);
+
+      $('#maintenance').addClass("in");
+
+      $('#food').addClass("active");
+
+      $('#transMenu').on('click', function(){
+        $('#maintenance').collapse("hide");
+      });
+
+      var table = $('#tblEquipmentType').DataTable();
+
+      $('#show_deletedType').on('change', function () {
+				table.draw();
+			});
+
+      $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+				var show_deleted = $('#show_deletedType:checked').length;
+				if (!show_deleted) return aData[4] == '';
+				return true;
+			});
+			table.draw();
+
+      var url = "{{ url('/equipmentType') }}";
+      var bid = 0;
+
+      $('.open-detail').click(function(){
+        var id = $(this).val();
+        console.log(id);
+
+        $.get(url + '/' + id, function (data) {
+            //success data
+            console.log(data);
+            $('#equiTypeId').val(data.strEquiTypeId);
+            $('#equiTypeName').val(data.strEquiTypeName);
+            $('#equiTypeDesc').val(data.txtEquiTypeDesc);
+            $('#showEquiType').modal('show');
+        })
+      });
+    });
+  </script>
+  @endsection
