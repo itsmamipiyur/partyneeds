@@ -9412,3 +9412,103 @@ Stack trace:
 =======
 >>>>>>> 285a321ff5f0eccec3c5e530f4972b26dafdcf94
 >>>>>>> 8f1a54ba0cc132016fd1df1dc19598c8deafabcc
+[2017-01-15 17:23:54] local.ERROR: PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ in C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:119
+Stack trace:
+#0 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(119): PDO->__construct('mysql:host=127....', 'root', '', Array)
+#1 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(56): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'root', '', Array)
+#2 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=127....', Array, Array)
+#3 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(126): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#4 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#5 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(965): call_user_func(Object(Closure))
+#6 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(986): Illuminate\Database\Connection->getPdo()
+#7 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(423): Illuminate\Database\Connection->getReadPdo()
+#8 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(333): Illuminate\Database\Connection->getPdoForSelect(true)
+#9 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'select * from i...', Array)
+#10 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('select * from i...', Array, Object(Closure))
+#11 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(351): Illuminate\Database\Connection->run('select * from i...', Array, Object(Closure))
+#12 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\MySqlBuilder.php(21): Illuminate\Database\Connection->select('select * from i...', Array)
+#13 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\DatabaseMigrationRepository.php(156): Illuminate\Database\Schema\MySqlBuilder->hasTable('migrations')
+#14 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(515): Illuminate\Database\Migrations\DatabaseMigrationRepository->repositoryExists()
+#15 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php(92): Illuminate\Database\Migrations\Migrator->repositoryExists()
+#16 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php(58): Illuminate\Database\Console\Migrations\MigrateCommand->prepareDatabase()
+#17 [internal function]: Illuminate\Database\Console\Migrations\MigrateCommand->fire()
+#18 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Container\Container.php(508): call_user_func_array(Array, Array)
+#19 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#20 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Command\Command.php(254): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(821): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(187): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\MigrateCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(118): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(121): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 C:\Users\MrkAngl\Desktop\partyneeds\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 {main}  
+[2017-01-15 17:23:54] local.ERROR: PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ in C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:119
+Stack trace:
+#0 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(119): PDO->__construct('mysql:host=127....', 'root', '', Array)
+#1 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(56): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'root', '', Array)
+#2 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=127....', Array, Array)
+#3 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(126): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#4 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#5 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(965): call_user_func(Object(Closure))
+#6 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(986): Illuminate\Database\Connection->getPdo()
+#7 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(423): Illuminate\Database\Connection->getReadPdo()
+#8 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(333): Illuminate\Database\Connection->getPdoForSelect(true)
+#9 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'select * from i...', Array)
+#10 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('select * from i...', Array, Object(Closure))
+#11 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(351): Illuminate\Database\Connection->run('select * from i...', Array, Object(Closure))
+#12 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\MySqlBuilder.php(21): Illuminate\Database\Connection->select('select * from i...', Array)
+#13 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\DatabaseMigrationRepository.php(156): Illuminate\Database\Schema\MySqlBuilder->hasTable('migrations')
+#14 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(515): Illuminate\Database\Migrations\DatabaseMigrationRepository->repositoryExists()
+#15 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php(92): Illuminate\Database\Migrations\Migrator->repositoryExists()
+#16 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php(58): Illuminate\Database\Console\Migrations\MigrateCommand->prepareDatabase()
+#17 [internal function]: Illuminate\Database\Console\Migrations\MigrateCommand->fire()
+#18 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Container\Container.php(508): call_user_func_array(Array, Array)
+#19 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#20 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Command\Command.php(254): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(821): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(187): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\MigrateCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(118): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(121): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 C:\Users\MrkAngl\Desktop\partyneeds\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ (SQL: select * from information_schema.tables where table_schema = dbcater and table_name = migrations) in C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Stack trace:
+#0 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('select * from i...', Array, Object(Closure))
+#1 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(351): Illuminate\Database\Connection->run('select * from i...', Array, Object(Closure))
+#2 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\MySqlBuilder.php(21): Illuminate\Database\Connection->select('select * from i...', Array)
+#3 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\DatabaseMigrationRepository.php(156): Illuminate\Database\Schema\MySqlBuilder->hasTable('migrations')
+#4 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(515): Illuminate\Database\Migrations\DatabaseMigrationRepository->repositoryExists()
+#5 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php(92): Illuminate\Database\Migrations\Migrator->repositoryExists()
+#6 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php(58): Illuminate\Database\Console\Migrations\MigrateCommand->prepareDatabase()
+#7 [internal function]: Illuminate\Database\Console\Migrations\MigrateCommand->fire()
+#8 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Container\Container.php(508): call_user_func_array(Array, Array)
+#9 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#10 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Command\Command.php(254): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(821): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#13 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(187): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\MigrateCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#14 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(118): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#15 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(121): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 C:\Users\MrkAngl\Desktop\partyneeds\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 {main}  
+[2017-01-15 18:46:59] local.ERROR: InvalidArgumentException: A AddTimestampToTblWaiter migration already exists. in C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\MigrationCreator.php:76
+Stack trace:
+#0 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\MigrationCreator.php(49): Illuminate\Database\Migrations\MigrationCreator->ensureMigrationDoesntAlreadyExist('add_timestamp_t...')
+#1 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateMakeCommand.php(98): Illuminate\Database\Migrations\MigrationCreator->create('add_timestamp_t...', 'C:\\Users\\MrkAng...', 'tblwaiter', false)
+#2 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateMakeCommand.php(81): Illuminate\Database\Console\Migrations\MigrateMakeCommand->writeMigration('add_timestamp_t...', 'tblwaiter', false)
+#3 [internal function]: Illuminate\Database\Console\Migrations\MigrateMakeCommand->fire()
+#4 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Container\Container.php(508): call_user_func_array(Array, Array)
+#5 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#6 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Command\Command.php(254): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(821): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(187): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\MigrateMakeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 C:\Users\MrkAngl\Desktop\partyneeds\vendor\symfony\console\Application.php(118): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(121): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 C:\Users\MrkAngl\Desktop\partyneeds\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#13 {main}  
