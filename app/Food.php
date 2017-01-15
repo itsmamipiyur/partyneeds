@@ -12,4 +12,5 @@ use SoftDeletes;
 protected $table = 'tblfood';
 protected $primaryKey = 'strFoodId';
 protected $fillable = ['strFoodName', 'strFoodFoodCateId', 'txtFoodDesc'];
+protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }

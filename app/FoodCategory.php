@@ -13,4 +13,5 @@ protected $table = 'tblfoodcategory';
 protected $primaryKey = 'strFoodCateId';
 protected $fillable = ['strFoodCateName', 'strFoodCateDesc', 'txtServDesc'];
 protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
 }

@@ -12,4 +12,5 @@ use SoftDeletes;
 protected $table = 'tbleventtype';
 protected $primaryKey = 'strEvenTypeId';
 protected $fillable = ['strServName', 'strEvenTypeName', 'strEvenTypeDesc'];
+protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }
