@@ -63,6 +63,7 @@
                                 <li><a href="{{ url('/equipment') }}">Equipment</a></li>
                                 <li><a href="{{ url('/staff') }}">Staff</a></li>
                                 <li><a href="{{ url('/package') }}">Package</a></li>
+                                <li><a href="{{ url('/event') }}">Event</a></li>
                               </ul>
                           </li>
                       @endif
@@ -119,6 +120,7 @@
                           <li><a href="{{ url('/equipment') }}" id="equipment">Equipment</a></li>
                           <li><a href="{{ url('/staff') }}" id="staff">Staff</a></li>
                           <li><a href="{{ url('/package') }}" id="package">Package</a></li>
+                          <li><a href="{{ url('/event') }}" id="package">Event</a></li>
                         </ul>
                       </div>
                     </li>
