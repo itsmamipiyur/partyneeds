@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('error')
   @if ($alert = Session::get('alert-success'))
@@ -6,6 +6,10 @@
         <strong>{{ $alert }}</strong>
     </div>
   @endif
+@endsection
+
+@section('title')
+  Equipment
 @endsection
 
 @section('content')
@@ -63,78 +67,6 @@
                   @endif
                 </td>
               </tr>
-
-              <div id="del{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Delete Equipment Type</h4>
-                      </div>
-                      <div class="modal-body">
-                        <h5>Are you sure to delete <strong>{{ $equipmentType->strEquiTypeName }}</strong>?</h5>
-                      </div>
-                      <div class="modal-footer">
-
-                        {!! Form::open(['url' => '/equipmentType/' . $equipmentType->strEquiTypeId, 'method' => 'delete']) !!}
-                    			{{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-danger']) }}
-                    		{!! Form::close() !!}
-                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      </div>
-                  </div>
-                </div>
-              </div>
-
-              <div id="restore{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Restore Equipment Type</h4>
-                      </div>
-                      <div class="modal-body">
-                        <h5>Are you sure to restore <strong>{{ $equipmentType->strEquiTypeName }}</strong>?</h5>
-                      </div>
-                      <div class="modal-footer">
-                        {!! Form::open(['url' => '/equipmentType/equipmentType_restore']) !!}
-                          {{ Form::hidden('equipment_type_id', $equipmentType->strEquiTypeId) }}
-                    			{{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-warning']) }}
-                    		{!! Form::close() !!}
-                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      </div>
-                  </div>
-                </div>
-              </div>
-
-              <div id="edit{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Update Equipment Type</h4>
-                    </div>
-                    <div class="modal-body">
-                      {!! Form::open(['url' => 'equipmentType/equipmentType_update/']) !!}
-                        {{ Form::hidden('equipment_type_id', $equipmentType->strEquiTypeId) }}
-                        <div class="form-group">
-                        {{ Form::label('equipment_type_name', 'Equipment Type Name') }}
-                        {{ Form::text('equipment_type_name', $equipmentType->strEquiTypeName, ['placeholder' => 'Type Equipment Type Name', 'class' => 'form-control']) }}
-                        </div>
-
-                        <div class="form-group">
-                        {{ Form::label('equipment_type_desc', 'Description') }}
-                        {{ Form::textarea('equipment_type_desc', $equipmentType->strEquiTypeDesc, ['placeholder' => 'Type Equipment Type Description', 'class' => 'form-control']) }}
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                      {{ Form::button('Update', ['type' => 'submit', 'class' => 'btn btn-info', 'id' => 'btn-save']) }}
-                    {!! Form::close() !!}
-                    </div>
-                  </div>
-                </div>
-              </div>
             @endforeach
           @endif
         </tbody>
@@ -143,6 +75,78 @@
   </div>
 </div>
 
+@foreach($equipmentTypes as $equipmentType)
+<div id="del{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Equipment Type</h4>
+        </div>
+        <div class="modal-body">
+          <h5>Are you sure to delete <strong>{{ $equipmentType->strEquiTypeName }}</strong>?</h5>
+        </div>
+        <div class="modal-footer">
+
+          {!! Form::open(['url' => '/equipmentType/' . $equipmentType->strEquiTypeId, 'method' => 'delete']) !!}
+            {{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-danger']) }}
+          {!! Form::close() !!}
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="restore{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Restore Equipment Type</h4>
+        </div>
+        <div class="modal-body">
+          <h5>Are you sure to restore <strong>{{ $equipmentType->strEquiTypeName }}</strong>?</h5>
+        </div>
+        <div class="modal-footer">
+          {!! Form::open(['url' => '/equipmentType/equipmentType_restore']) !!}
+            {{ Form::hidden('equipment_type_id', $equipmentType->strEquiTypeId) }}
+            {{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-warning']) }}
+          {!! Form::close() !!}
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="edit{{$equipmentType->strEquiTypeId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Equipment Type</h4>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['url' => 'equipmentType/equipmentType_update/']) !!}
+          {{ Form::hidden('equipment_type_id', $equipmentType->strEquiTypeId) }}
+          <div class="form-group">
+          {{ Form::label('equipment_type_name', 'Equipment Type Name') }}
+          {{ Form::text('equipment_type_name', $equipmentType->strEquiTypeName, ['placeholder' => 'Type Equipment Type Name', 'class' => 'form-control']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('equipment_type_desc', 'Description') }}
+          {{ Form::textarea('equipment_type_desc', $equipmentType->strEquiTypeDesc, ['placeholder' => 'Type Equipment Type Description', 'class' => 'form-control']) }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        {{ Form::button('Update', ['type' => 'submit', 'class' => 'btn btn-info', 'id' => 'btn-save']) }}
+      {!! Form::close() !!}
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
 
 <div id="showEquiType" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -411,6 +415,14 @@
       setTimeout(function(){
           $('.alert').fadeOut("slow");
       }, 2000);
+
+      $('#maintenance').addClass("in");
+
+      $('#equipment').addClass("active");
+
+      $('#transMenu').on('click', function(){
+        $('#maintenance').collapse("hide");
+      });
 
       var table = $('#tblEquipmentType').DataTable();
 
