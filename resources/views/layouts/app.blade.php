@@ -29,7 +29,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top navi">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -48,12 +48,12 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav sr-only">
+                    <ul class="nav navbar-nav hidden-md hidden-lg">
                       @if (Auth::guest())
                           &nbsp;
                       @else
                           <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                              <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
                                   Maintenance <span class="caret"></span>
                               </a>
 
@@ -63,6 +63,7 @@
                                 <li><a href="{{ url('/equipment') }}">Equipment</a></li>
                                 <li><a href="{{ url('/staff') }}">Staff</a></li>
                                 <li><a href="{{ url('/package') }}">Package</a></li>
+                                <li><a href="{{ url('/eventType') }}">Event Type</a></li>
                               </ul>
                           </li>
                       @endif
@@ -119,6 +120,7 @@
                           <li><a href="{{ url('/equipment') }}" id="equipment">Equipment</a></li>
                           <li><a href="{{ url('/staff') }}" id="staff">Staff</a></li>
                           <li><a href="{{ url('/package') }}" id="package">Package</a></li>
+                          <li><a href="{{ url('/eventType') }}" id="eventType">Event Type</a></li>
                         </ul>
                       </div>
                     </li>

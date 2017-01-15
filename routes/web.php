@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('equipmentType', 'EquipmentTypeController');
     Route::resource('staff', 'StaffController');
     Route::resource('package', 'PackageController');
+    Route::resource('eventType', 'EventTypeController');
 
 
     Route::post('/customer/customer_update', 'CustomerController@customer_update');
