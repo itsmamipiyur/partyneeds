@@ -14,7 +14,7 @@ class EventTypeController extends Controller
      */
     public function index()
     {
-        return view('maintenance/event');
+        return view('maintenance/eventType');
     }
 
     /**

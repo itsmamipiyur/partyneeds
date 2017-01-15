@@ -1,4 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.app')
+
+@section('title')
+  Event Type
+@endsection
 
 @section('content')
 
@@ -37,6 +41,52 @@
   </div>
 </div>
 
+@section('js')
+  <script>
+    $(document).ready( function(){
+      setTimeout(function(){
+          $('.alert').fadeOut("slow");
+      }, 2000);
+
+      $('#maintenance').addClass("in");
+      $('#eventType').addClass("active");
+      $('#transMenu').on('click', function(){
+        $('#maintenance').collapse("hide");
+      });
+
+      var table = $('#tblStaff').DataTable();
+
+      $('#show_deleted').on('change', function () {
+				table.draw();
+			});
+
+      $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+				var show_deleted = $('#show_deleted:checked').length;
+				if (!show_deleted) return aData[6] == '';
+				return true;
+			});
+			table.draw();
+
+      var url = "{{ url('/staff') }}";
+      var bid = 0;
+
+      $('.open-detail').click(function(){
+        var id = $(this).val();
+        console.log(id);
+
+        $.get(url + '/' + id, function (data) {
+            //success data
+            console.log(data);
+            $('#stafId').val(data.strStafId);
+            $('#stafFirst').val(data.strStafFirst);
+            $('#stafMiddle').val(data.strStafMiddle);
+            $('#stafLast').val(data.strStafLast);
+            $('#showDetail').modal('show');
+        })
+      });
+    });
+  </script>
+  @endsection
 
 
 
