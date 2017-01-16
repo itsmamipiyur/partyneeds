@@ -57,7 +57,6 @@ CREATE TABLE `tbldamagefee` (
   `strDamaFeeEquiId` varchar(45) NOT NULL,
   `txtDamaFeeDesc` text,
   `dblDamaFeeAmount` decimal(10,2) NOT NULL,
-  `intDamaFeeStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strDamaFeeId`),
   KEY `fk_strDamaFeeEquiId_idx` (`strDamaFeeEquiId`),
   CONSTRAINT `fk_strDamaFeeEquiId` FOREIGN KEY (`strDamaFeeEquiId`) REFERENCES `tblequipment` (`strEquiId`) ON UPDATE CASCADE
@@ -85,7 +84,6 @@ CREATE TABLE `tbldeliveryfee` (
   `strDeliFeeName` varchar(100) NOT NULL,
   `txtDeliFeeDesc` text,
   `dblDeliFeeAmount` decimal(10,2) NOT NULL,
-  `intDeliFeeStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strDeliFeeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -110,7 +108,6 @@ CREATE TABLE `tbldrink` (
   `strDrinkId` varchar(45) NOT NULL,
   `strDrinkName` varchar(100) NOT NULL,
   `txtDrinkDesc` text,
-  `strDrinkStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strDrinkId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -136,7 +133,6 @@ CREATE TABLE `tblequipment` (
   `strEquiName` varchar(100) NOT NULL,
   `strEquiEquiTypeId` varchar(45) NOT NULL,
   `txtEquiDesc` text,
-  `intEquiStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strEquiId`),
   KEY `fk_strEquiEquiTypeId_idx` (`strEquiEquiTypeId`),
   CONSTRAINT `fk_strEquiEquiTypeId` FOREIGN KEY (`strEquiEquiTypeId`) REFERENCES `tblequipmenttype` (`strEquiTypeId`) ON UPDATE CASCADE
@@ -189,7 +185,6 @@ CREATE TABLE `tblequipmenttype` (
   `strEquiTypeId` varchar(45) NOT NULL,
   `strEquiTypeName` varchar(100) NOT NULL,
   `txtEquiTypeDesc` text,
-  `intEquiTypeStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strEquiTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -218,7 +213,6 @@ CREATE TABLE `tbleventbooking` (
   `strEvenBookAddress` text,
   `strEvenBookEvenTypeId` varchar(45) DEFAULT NULL,
   `txtEvenBookDesc` text,
-  `intEvenBookStatus` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`strEvenBookId`),
   KEY `fk_strEvenBookCustId_idx` (`strEvenBookCustId`),
   KEY `fk_strEvenBookEvenTypeId_idx` (`strEvenBookEvenTypeId`),
@@ -246,7 +240,6 @@ DROP TABLE IF EXISTS `tbleventdrink`;
 CREATE TABLE `tbleventdrink` (
   `strEvenDrinEvenBookId` varchar(45) NOT NULL,
   `strEvenDrinDrinId` varchar(45) NOT NULL,
-  `intEvenDrinStatus` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`strEvenDrinEvenBookId`,`strEvenDrinDrinId`),
   KEY `fk_strEvenDrinDrinId_idx` (`strEvenDrinDrinId`),
   CONSTRAINT `fk_strEvenDrinDrinId` FOREIGN KEY (`strEvenDrinDrinId`) REFERENCES `tbldrink` (`strDrinkId`) ON UPDATE CASCADE,
@@ -274,7 +267,6 @@ CREATE TABLE `tbleventmenu` (
   `strEvenMenuEvenBookId` varchar(45) NOT NULL,
   `strEvenMenuMenuId` varchar(45) NOT NULL,
   `intEvenMenuPax` int(11) NOT NULL,
-  `intEvenMenuStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strEvenMenuEvenBookId`,`strEvenMenuMenuId`),
   KEY `fk_strEvenMenuMenuId_idx` (`strEvenMenuMenuId`),
   CONSTRAINT `fk_strEvenMenuEvenBookId` FOREIGN KEY (`strEvenMenuEvenBookId`) REFERENCES `tbleventbooking` (`strEvenBookId`) ON UPDATE CASCADE,
@@ -301,7 +293,6 @@ DROP TABLE IF EXISTS `tbleventmotif`;
 CREATE TABLE `tbleventmotif` (
   `strEvenMotiEvenBookId` varchar(45) NOT NULL,
   `strEvenMotiMotiId` varchar(45) NOT NULL,
-  `strEvenMotiStatus` varchar(45) NOT NULL,
   PRIMARY KEY (`strEvenMotiEvenBookId`),
   KEY `fk_strEvenMotiMotiId_idx` (`strEvenMotiMotiId`),
   CONSTRAINT `fk_strEvenMotiEvenBookId` FOREIGN KEY (`strEvenMotiEvenBookId`) REFERENCES `tbleventbooking` (`strEvenBookId`) ON UPDATE CASCADE,
@@ -329,7 +320,6 @@ CREATE TABLE `tbleventtype` (
   `strEvenTypeId` varchar(45) NOT NULL,
   `strEvenTypeName` varchar(100) NOT NULL,
   `strEvenTypeDesc` text,
-  `intEvenTypeStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strEvenTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -353,7 +343,6 @@ DROP TABLE IF EXISTS `tbleventwaiter`;
 CREATE TABLE `tbleventwaiter` (
   `strEvenWaitEvenBookId` varchar(45) NOT NULL,
   `strEvenWaitWaitId` varchar(45) NOT NULL,
-  `intEvenWaitStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strEvenWaitEvenBookId`,`strEvenWaitWaitId`),
   KEY `fk_strEvenWaitWaitId_idx` (`strEvenWaitWaitId`),
   CONSTRAINT `fk_strEvenWaitEvenBookId` FOREIGN KEY (`strEvenWaitEvenBookId`) REFERENCES `tbleventbooking` (`strEvenBookId`) ON UPDATE CASCADE,
@@ -382,7 +371,6 @@ CREATE TABLE `tblfood` (
   `strFoodName` varchar(100) NOT NULL,
   `strFoodFoodCateId` varchar(45) NOT NULL,
   `txtFoodDesc` text,
-  `intFoodStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strFoodId`),
   KEY `fk_strFoodFoodCateId_idx` (`strFoodFoodCateId`),
   CONSTRAINT `fk_strFoodFoodCateId` FOREIGN KEY (`strFoodFoodCateId`) REFERENCES `tblfoodcategory` (`strFoodCateId`) ON UPDATE CASCADE
@@ -409,7 +397,6 @@ CREATE TABLE `tblfoodcategory` (
   `strFoodCateId` varchar(45) NOT NULL,
   `strFoodCateName` varchar(100) NOT NULL,
   `txtFoodCateDesc` text,
-  `intFoodCateStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strFoodCateId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -433,7 +420,6 @@ DROP TABLE IF EXISTS `tblfoodmenu`;
 CREATE TABLE `tblfoodmenu` (
   `strFoodMenuMenuId` varchar(45) NOT NULL,
   `strFoodMenuFoodId` varchar(45) NOT NULL,
-  `intFoodMenuStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strFoodMenuMenuId`,`strFoodMenuFoodId`),
   KEY `fk_strFoodMenuFoodId_idx` (`strFoodMenuFoodId`),
   CONSTRAINT `fk_strFoodMenuFoodId` FOREIGN KEY (`strFoodMenuFoodId`) REFERENCES `tblfood` (`strFoodId`) ON UPDATE CASCADE,
@@ -463,7 +449,6 @@ CREATE TABLE `tblmenu` (
   `dblMenuRate` decimal(10,2) NOT NULL,
   `strMenuMenuType` varchar(45) NOT NULL,
   `txtMenuDesc` text,
-  `intMenuStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strMenuId`),
   KEY `fk_strMenuMenuType_idx` (`strMenuMenuType`),
   CONSTRAINT `fk_strMenuMenuType` FOREIGN KEY (`strMenuMenuType`) REFERENCES `tblmenutype` (`strMenuTypeId`) ON UPDATE CASCADE
@@ -490,7 +475,6 @@ CREATE TABLE `tblmenutype` (
   `strMenuTypeId` varchar(45) NOT NULL,
   `strMenuTypeName` varchar(100) NOT NULL,
   `txtMenuTypeDesc` text,
-  `intMenuTypeStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strMenuTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -515,7 +499,6 @@ CREATE TABLE `tblmotif` (
   `strMotiId` varchar(45) NOT NULL,
   `strMotiName` varchar(100) NOT NULL,
   `txtMotiDesc` text,
-  `intMotiStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strMotiId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -540,7 +523,7 @@ CREATE TABLE `tblpackage` (
   `strPackId` varchar(45) NOT NULL,
   `strPackName` varchar(100) NOT NULL,
   `txtPackDesc` text,
-  `intPackStatus` tinyint(4) NOT NULL,
+  `dblPackRate` decimal(10,2) NOT NULL, 
   PRIMARY KEY (`strPackId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -564,7 +547,6 @@ DROP TABLE IF EXISTS `tblpackagemenu`;
 CREATE TABLE `tblpackagemenu` (
   `strPackMenuPackId` varchar(45) NOT NULL,
   `strPackMenuMenuId` varchar(45) NOT NULL,
-  `intPackMenuStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strPackMenuPackId`,`strPackMenuMenuId`),
   KEY `fk_strPackMenuMenuId_idx` (`strPackMenuMenuId`),
   CONSTRAINT `fk_strPackMenuMenuId` FOREIGN KEY (`strPackMenuMenuId`) REFERENCES `tblmenu` (`strMenuId`) ON UPDATE CASCADE,
@@ -594,7 +576,6 @@ CREATE TABLE `tblservice` (
   `strServServType` varchar(45) NOT NULL,
   `txtServDesc` text,
   `dblServRate` decimal(10,2) NOT NULL,
-  `intServStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strServId`),
   KEY `fk_strServServType_idx` (`strServServType`),
   CONSTRAINT `fk_strServServType` FOREIGN KEY (`strServServType`) REFERENCES `tblservicetype` (`strServTypeId`) ON UPDATE CASCADE
@@ -621,7 +602,6 @@ CREATE TABLE `tblservicetype` (
   `strServTypeId` varchar(45) NOT NULL,
   `strServTypeName` varchar(100) NOT NULL,
   `txtServTypeDesc` text,
-  `intServTypeStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strServTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -649,7 +629,6 @@ CREATE TABLE `tblstaff` (
   `strStafLast` varchar(100) NOT NULL,
   `strStafPassword` varchar(50) NOT NULL,
   `intStafIsAdmin` tinyint(4) NOT NULL,
-  `intStafStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strStafId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -675,7 +654,6 @@ CREATE TABLE `tblwaiter` (
   `strWaitFirst` varchar(100) NOT NULL,
   `strWaitMiddle` varchar(100) DEFAULT NULL,
   `strWaitLast` varchar(100) NOT NULL,
-  `intWaitStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`strWaitId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

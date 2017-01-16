@@ -16,20 +16,11 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-       $ids = \DB::table('tblEquipmentType')
-           ->select('strEquiTypeId')
-           ->orderBy('strEquiTypeId', 'desc')
-           ->first();
+
        $idss = \DB::table('tblEquipment')
            ->select('strEquiId')
            ->orderBy('strEquiId', 'desc')
            ->first();
-
-       if ($ids == null) {
-         $newTypeID = $this->smartCounter("EQUITYPE0000");
-       }else{
-         $newTypeID = $this->smartCounter($ids->strEquiTypeId);
-       }
 
        if ($idss == null) {
          $newID = $this->smartCounter("EQUI0000");
@@ -37,14 +28,11 @@ class EquipmentController extends Controller
          $newID = $this->smartCounter($idss->strEquiId);
        }
 
-       $equipmentTypes = EquipmentType::withTrashed()->get();
        $equiTypes = EquipmentType::orderBy('strEquiTypeName')->pluck('strEquiTypeName', 'strEquiTypeId');
        $equipments = Equipment::withTrashed()->get();
 
       return view('maintenance/equipment')
-        ->with('newTypeID', $newTypeID)
         ->with('newID', $newID)
-        ->with('equipmentTypes', $equipmentTypes)
         ->with('equiTypes', $equiTypes)
         ->with('equipments', $equipments);
     }
@@ -149,43 +137,9 @@ class EquipmentController extends Controller
     public function equipment_restore(Request $request)
     {
       $id = $request->equipment_id;
-      $equipment = Equipment::onlyTrashed()->where('strEquiTypeId', '=', $id)->firstOrFail();
+      $equipment = Equipment::onlyTrashed()->where('strEquiId', '=', $id)->firstOrFail();
       $equipment->restore();
 
       return redirect('equipment')->with('alert-success', 'Equipment ' . $id . ' was successfully restored.');
-    }
-
-
-    public function smartCounter($id)
-    {
-        $lastID = str_split($id);
-        $ctr = 0;
-        $tempID = "";
-        $tempNew = [];
-        $newID = "";
-        $add = TRUE;
-        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
-            $tempID = $lastID[$ctr];
-            if($add){
-                if(is_numeric($tempID) || $tempID == '0'){
-                    if($tempID == '9'){
-                        $tempID = '0';
-                        $tempNew[$ctr] = $tempID;
-                    }else{
-                        $tempID = $tempID + 1;
-                        $tempNew[$ctr] = $tempID;
-                        $add = FALSE;
-                    }
-                }else{
-                    $tempNew[$ctr] = $tempID;
-                }
-            }
-            $tempNew[$ctr] = $tempID;
-        }
-
-        for($ctr = 0; $ctr < count($lastID); $ctr++){
-            $newID = $newID . $tempNew[$ctr];
-        }
-        return $newID;
     }
 }
