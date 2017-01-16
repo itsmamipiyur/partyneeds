@@ -26,10 +26,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('package', 'PackageController');
     Route::resource('eventType', 'EventTypeController');
     Route::resource('motif', 'MotifController');
-<<<<<<< HEAD
     Route::resource('menu', 'MenuController');
-=======
->>>>>>> 8da6c17f15626e26be05e35e985b51aed7c4e593
+    Route::resource('menuType', 'MenuTypeController');
+    Route::resource('drink', 'DrinkController');
+
 
 
 

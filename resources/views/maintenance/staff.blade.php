@@ -20,6 +20,9 @@
           <tr>
             <th>Staff ID</th>
             <th>Staff Name</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Deleted At</th>
             <th>Actions</th>
           </tr>
         </thead>

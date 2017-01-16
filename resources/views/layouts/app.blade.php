@@ -69,6 +69,8 @@
                                 <li><a href="{{ url('/eventType') }}">Event Type</a></li>
                                 <li><a href="{{ url('/motif') }}">Motif</a></li>
                                 <li><a href="{{ url('/menu') }}">Menu</a></li>
+                                <li><a href="{{ url('/menuType') }}">Menu Type</a></li>
+                                <li><a href="{{ url('/drink') }}">Drink</a></li>
                               </ul>
                           </li>
                       @endif
@@ -130,6 +132,8 @@
                           <li><a href="{{ url('/eventType') }}" id="eventType">Event Type</a></li>
                           <li><a href="{{ url('/motif') }}" id="eventType">Motif</a></li>
                           <li><a href="{{ url('/menu') }}" id="menu">Menu</a></li>
+                          <li><a href="{{ url('/menuType') }}" id="menuType">Menu Type</a></li>
+                          <li><a href="{{ url('/drink') }}" id="drink">Drink</a></li>
                         </ul>
                       </div>
                     </li>

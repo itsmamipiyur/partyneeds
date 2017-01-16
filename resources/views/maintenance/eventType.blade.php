@@ -37,17 +37,15 @@
           <tr>
             <th>Event Type ID</th>
             <th>Event Type Name</th>
-<<<<<<< HEAD
-=======
+
             <th>Created At</th>
             <th>Updated At</th>
             <th>Deleted At</th>
->>>>>>> 8da6c17f15626e26be05e35e985b51aed7c4e593
+
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
           <tr>
             <td>EVNTTYPE0001</td>
             <td>Birthday</td>
@@ -55,7 +53,6 @@
               lol
             </td>
           </tr>
-=======
           @if(count($eventTypes) == 0)
             <tr>
               <td colspan="6" align="center"><strong>Nothing to show</strong></td>
@@ -80,7 +77,6 @@
               </tr>
             @endforeach
           @endif
->>>>>>> 8da6c17f15626e26be05e35e985b51aed7c4e593
         </tbody>
       </table>
     </div>
