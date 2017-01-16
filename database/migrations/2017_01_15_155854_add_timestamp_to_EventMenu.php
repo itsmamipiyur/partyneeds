@@ -14,7 +14,7 @@ class AddTimestampToEventMenu extends Migration
     public function up()
     {
         Schema::table('tbleventmenu', function (Blueprint $table) {
-            //
+
         });
     }
 

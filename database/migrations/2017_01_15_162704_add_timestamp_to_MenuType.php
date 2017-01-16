@@ -14,7 +14,8 @@ class AddTimestampToMenuType extends Migration
     public function up()
     {
         Schema::table('tblmenutype', function (Blueprint $table) {
-            //
+          $table->timestamps();
+          $table->SoftDeletes();
         });
     }
 

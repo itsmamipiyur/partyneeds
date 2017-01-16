@@ -14,7 +14,8 @@ class AddTimestampToFood extends Migration
     public function up()
     {
         Schema::table('tblfood', function (Blueprint $table) {
-            //
+          $table->timestamps();
+          $table->SoftDeletes();
         });
     }
 

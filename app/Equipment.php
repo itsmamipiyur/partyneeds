@@ -11,7 +11,7 @@ class Equipment extends Model
   use SoftDeletes;
   protected $table = 'tblequipment';
   protected $primaryKey = 'strEquiId';
-  protected $fillable = ['strEquiName', 'txtEquiDesc'];
+  protected $fillable = ['strEquiName', 'txtEquiDesc', 'strEquiTypeId'];
   protected $dates = ['created_at', 'updated_at', 'deleted_at'];
   protected $casts = ['strEquiId' => 'string'];
 

@@ -52,6 +52,7 @@
                       @if (Auth::guest())
                           &nbsp;
                       @else
+                          <li><a href="{{ url('/home') }}">Dashboard</a></li>
                           <li class="dropdown">
                               <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
                                   Maintenance <span class="caret"></span>
@@ -60,7 +61,9 @@
                               <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/customer') }}">Customer</a></li>
                                 <li><a href="{{ url('/food') }}">Food</a></li>
+                                <li><a href="{{ url('/foodCategory') }}">Food</a></li>
                                 <li><a href="{{ url('/equipment') }}">Equipment</a></li>
+                                <li><a href="{{ url('/equipmentTypes') }}">Equipment Type</a></li>
                                 <li><a href="{{ url('/staff') }}">Staff</a></li>
                                 <li><a href="{{ url('/package') }}">Package</a></li>
                                 <li><a href="{{ url('/eventType') }}">Event Type</a></li>
@@ -110,7 +113,7 @@
               <div class="col-md-3 hidden-sm hidden-xs">
                 <div class="sidebar">
                   <ul class="menu-list nav">
-                    <li><a href="{{ url('/home') }}">DASHBOARD</a></li>
+                    <li><a href="{{ url('/home') }}" id="dashboard">DASHBOARD</a></li>
                     <li>
                       <a href="#maintenance" data-toggle="collapse">MAINTENANCE</a>
 
@@ -118,7 +121,9 @@
                         <ul class="nav">
                           <li><a href="{{ url('/customer') }}" id="customer">Customer</a></li>
                           <li><a href="{{ url('/food') }}" id="food">Food</a></li>
+                          <li><a href="{{ url('/foodCategory') }}" id="foodCategory">Food Category</a></li>
                           <li><a href="{{ url('/equipment') }}" id="equipment">Equipment</a></li>
+                          <li><a href="{{ url('/equipmentType') }}" id="equipmentType">Equipment Type</a></li>
                           <li><a href="{{ url('/staff') }}" id="staff">Staff</a></li>
                           <li><a href="{{ url('/package') }}" id="package">Package</a></li>
                           <li><a href="{{ url('/eventType') }}" id="eventType">Event Type</a></li>

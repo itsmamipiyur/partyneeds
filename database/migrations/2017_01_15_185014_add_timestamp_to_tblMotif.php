@@ -15,6 +15,8 @@ class AddTimestampToTblMotif extends Migration
     {
         Schema::table('tblmotif', function (Blueprint $table) {
             //
+            $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

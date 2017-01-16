@@ -14,7 +14,8 @@ class AddTimestampToEventBooking extends Migration
     public function up()
     {
         Schema::table('tbleventbooking', function (Blueprint $table) {
-            //
+          $table->timestamps();
+          $table->SoftDeletes();
         });
     }
 
