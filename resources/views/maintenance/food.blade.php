@@ -22,15 +22,13 @@
           <tr>
             <th>Food Category ID</th>
             <th>Food Category Name</th>
-            <th>Description</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>FOODTYPE0001</td>
+            <td>FOODCATE0001</td>
             <td>Chicken</td>
-            <td>Foods with Chicken</td>
             <td>
               lol
             </td>
@@ -63,7 +61,7 @@
           <tr>
             <td>FOOD0001</td>
             <td>Menudo</td>
-            <td>Filipino Dish</td>
+            <td>Beef</td>
             <td>
               lol
             </td>
@@ -141,16 +139,16 @@
             </div>
         @endif
 
-        {!! Form::open(['url' => '/foodtype']) !!}
+        {!! Form::open(['url' => '/foodcategory']) !!}
           <div class="form-group">
-          {{ Form::label('category_name', 'Food Category Name') }}
-          {{ Form::text('category_name', '', ['placeholder' => 'Example: Chicken', 'class' => 'form-control']) }}
+          {{ Form::label('food_category_name', 'Food Category Name') }}
+          {{ Form::text('food_category_name', '', ['placeholder' => 'Example: Chicken', 'class' => 'form-control']) }}
           </div>
 
 
           <div class="form-group">
-          {{ Form::label('category_description', 'Category Description') }}
-          {{ Form::textarea('cateogory_description', '', ['placeholder' => 'Type the description', 'class' => 'form-control']) }}
+          {{ Form::label('food_category_description', 'Food Category Description') }}
+          {{ Form::textarea('food_category_description', '', ['placeholder' => 'Type the description', 'class' => 'form-control']) }}
           </div>
         </div>
       <div class="modal-footer">

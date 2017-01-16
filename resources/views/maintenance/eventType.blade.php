@@ -22,7 +22,6 @@
           <tr>
             <th>Event Type ID</th>
             <th>Event Type Name</th>
-            <th>Event Description</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -30,7 +29,6 @@
           <tr>
             <td>EVNTTYPE0001</td>
             <td>Birthday</td>
-            <td>Birthday event</td>
             <td>
               lol
             </td>
