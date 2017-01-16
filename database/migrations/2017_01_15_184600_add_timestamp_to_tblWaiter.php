@@ -15,6 +15,8 @@ class AddTimestampToTblWaiter extends Migration
     {
         Schema::table('tblwaiter', function (Blueprint $table) {
             //
+            $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

@@ -46,40 +46,6 @@
   </div>
 </div>
 
-
-<div class="row">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Drink List</h3>
-    </div>
-    <div class="panel-body">
-      <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#createDrink">Add Drink</button>
-      <br>
-      <table class="table table-hover" id="tblBranch">
-        <thead>
-          <tr>
-            <th>Drink ID</th>
-            <th>Drink Name</th>
-            <th>Created At</th>
-            <th>Updated At</th>
-            <th>Deleted At</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>DRNK0001</td>
-            <td>Iced Tea</td>
-            <td>
-              lol
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
 <div id="create" class="modal fade" role="dialog">
   <div class="modal-dialog">
 

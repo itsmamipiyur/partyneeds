@@ -15,6 +15,8 @@ class AddTimestampToTblStaff extends Migration
     {
         Schema::table('tblstaff', function (Blueprint $table) {
             //
+            $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 
