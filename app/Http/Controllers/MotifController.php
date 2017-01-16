@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-
-class StaffController extends Controller
+class MotifController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-
-
-      return view('maintenance/staff');
-
+        return view('maintenance/motif');
     }
 
     /**
@@ -39,11 +35,7 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-      $rules = ['first_name' => 'required',
-                'last_name' => 'required'
-              ];
-
-      $this->validate($request, $rules);
+        //
     }
 
     /**
@@ -54,7 +46,7 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -88,8 +80,6 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
-
-    
 }
