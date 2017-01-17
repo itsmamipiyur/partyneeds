@@ -15,6 +15,8 @@ class AddTimestampToServiceType extends Migration
     {
         Schema::table('tblservicetype', function (Blueprint $table) {
             //
+            $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

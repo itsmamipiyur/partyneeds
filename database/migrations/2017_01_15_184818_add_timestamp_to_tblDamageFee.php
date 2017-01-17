@@ -15,6 +15,8 @@ class AddTimestampToTblDamageFee extends Migration
     {
         Schema::table('tbldamagefee', function (Blueprint $table) {
             //
+            $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

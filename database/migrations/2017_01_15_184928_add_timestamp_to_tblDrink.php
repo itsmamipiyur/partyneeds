@@ -15,6 +15,8 @@ class AddTimestampToTblDrink extends Migration
     {
         Schema::table('tbldrink', function (Blueprint $table) {
             //
+            $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

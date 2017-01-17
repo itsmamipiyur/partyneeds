@@ -12,4 +12,5 @@ use SoftDeletes;
 protected $table = 'tblservice';
 protected $primaryKey = 'strPackMenuPackId', 'strPackMenuMenuId';
 protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+protected $casts = ['strPackMenuPackId', 'strPackMenuMenuId' => 'string'];
 }

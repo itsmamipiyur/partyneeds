@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\FoodCategory;
+use App\Food;
+
 
 class FoodController extends Controller
 {
@@ -14,10 +18,25 @@ class FoodController extends Controller
     public function index()
     {
         //
-        $categories = ['1' => 'Chick',
-                     '2' => 'Bif',
-                     '3' => 'Por'];
-        return view('maintenance/food', ['categories' => $categories]);
+        $idss = \DB::table('tblFood')
+            ->select('strFoodId')
+            ->orderBy('strFoodId', 'desc')
+            ->first();
+
+        if ($idss == null) {
+          $newID = $this->smartCounter("FOOD0000");
+        }else{
+          $newID = $this->smartCounter($idss->strFoodId);
+        }
+
+        $foodCategories = FoodCategory::orderBy('strFoodCateName')->pluck('strFoodCateName', 'strFoodCateId');
+        $foods = Food::withTrashed()->get();
+
+       return view('maintenance/food')
+         ->with('newID', $newID)
+         ->with('foodCategories', $foodCategories)
+         ->with('foods', $foods);
+
     }
 
     /**
@@ -43,6 +62,15 @@ class FoodController extends Controller
                   'food_category' => 'required'];
 
         $this->validate($request, $rules);
+        $food = new Food;
+
+        $food->strFoodId = trim($request->food_id);
+        $food->strFoodName = trim($request->food_name);
+        $food->txtFoodDesc = trim($request->food_description);
+        $food->strFoodFoodCateId = trim($request->food_category);
+        $food->save();
+
+        return redirect('food')->with('alert-success', 'Food was successfully saved.');
     }
 
     /**
@@ -85,8 +113,36 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+     public function destroy($id)
+     {
+       $food = Food::find($id);
+       $name = $food->strFoodName;
+       $food->delete();
+
+       return redirect('food')->with('alert-success', 'Food '. $name .' was successfully deleted.');
+     }
+
+     public function food_update(Request $request)
+     {
+       $rules = ['food_name' => 'required | max:100',
+                 'food_category' => 'required'];
+
+       $this->validate($request, $rules);
+       $food = Food::find($request->food_id);
+       $food->strFoodName = trim($request->food_name);
+       $food->txtFoodDesc = trim($request->food_description);
+       $food->strFoodFoodCateId = trim($request->food_category);
+       $food->save();
+
+       return redirect('food')->with('alert-success', 'Food ' . $request->food_id . ' was successfully updated.');
+     }
+
+     public function food_restore(Request $request)
+     {
+       $id = $request->food_id;
+       $food = Food::onlyTrashed()->where('strFoodId', '=', $id)->firstOrFail();
+       $food->restore();
+
+       return redirect('food')->with('alert-success', 'Food ' . $id . ' was successfully restored.');
+     }
 }

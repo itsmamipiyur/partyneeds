@@ -13,4 +13,5 @@ protected $table = 'tblmenu';
 protected $primaryKey = 'strMenuId';
 protected $fillable = ['dblMenuRate', 'strMenuMenuType', 'txtMenuDesc'];
 protected $dates = ['dtmMenuCreatedAt', 'created_at', 'updated_at', 'deleted_at'];
+protected $casts = ['strMenuId' => 'string'];
 }

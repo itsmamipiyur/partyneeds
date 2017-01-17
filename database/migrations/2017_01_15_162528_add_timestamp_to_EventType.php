@@ -14,7 +14,8 @@ class AddTimestampToEventType extends Migration
     public function up()
     {
         Schema::table('tbleventtype', function (Blueprint $table) {
-            //
+          $table->timestamps();
+          $table->SoftDeletes();
         });
     }
 

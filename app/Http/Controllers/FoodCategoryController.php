@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\FoodCategory;
+use Response;
 
 class FoodCategoryController extends Controller
 {
@@ -15,6 +17,21 @@ class FoodCategoryController extends Controller
     public function index()
     {
         //
+        $ids = \DB::table('tblfoodcategory')
+            ->select('strFoodCateId')
+            ->orderBy('strFoodCateId', 'desc')
+            ->first();
+
+        if ($ids == null) {
+          $newID = $this->smartCounter("FOODCATE0000");
+        }else{
+          $newID = $this->smartCounter($ids->strFoodCateId);
+        }
+
+        $foodCategories = FoodCategory::withTrashed()->get();
+        return view('maintenance/foodCategory')
+          ->with('foodCategories', $foodCategories)
+          ->with('newID', $newID);
     }
 
     /**
@@ -36,9 +53,17 @@ class FoodCategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $rules = ['category_name' => 'required | max:100'];
+        $rules = ['food_category_name' => 'required | max:100'];
 
         $this->validate($request, $rules);
+        $foodCategory = new foodCategory;
+        $foodCategory->strFoodCateId = $request->category_id;
+        $foodCategory->strFoodCateName = $request->category_name;
+        $foodCategory->txtFoodCateDesc = $request->category_description;
+        $foodCategory->save();
+
+        return redirect('foodCategory')
+          ->with('alert-success', 'Food Category was successfully added.');
     }
 
     /**
@@ -50,6 +75,8 @@ class FoodCategoryController extends Controller
     public function show($id)
     {
         //
+        $foodCategory = FoodCategory::find($id);
+        return Response::json($foodCategory);
     }
 
     /**
@@ -85,5 +112,33 @@ class FoodCategoryController extends Controller
     public function destroy($id)
     {
         //
+        $foodCategory = FoodCategory::find($id);
+        $name = $foodCategory->strFoodCateName;
+        $foodCategory->delete();
+
+        return redirect('foodCategory')->with('alert-success', 'Food Category '. $name .' was successfully deleted.');
+    }
+
+    public function foodCategory_update(Request $request)
+    {
+      $rules = ['category_name' => 'required | max:100'];
+      $id = $request->category_id;
+
+      $this->validate($request, $rules);
+      $foodCategory = foodCategory::find($id);
+      $foodCategory->strFoodCateName = $request->category_name;
+      $foodCategory->txtFoodCateDesc = $request->category_description;
+      $foodCategory->save();
+
+      return redirect('foodCategory')->with('alert-success', 'Equipment Type ' . $id . ' was successfully updated.');
+    }
+
+    public function foodCategory_restore(Request $request)
+    {
+      $id = $request->category_id;
+      $foodCategory = FoodCategory::onlyTrashed()->where('strFoodCateId', '=', $id)->firstOrFail();
+      $foodCategory->restore();
+
+      return redirect('foodCategory')->with('alert-success', 'Equipment Type ' . $id . ' was successfully restored.');
     }
 }

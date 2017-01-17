@@ -15,6 +15,8 @@ class AddTimestampToTblDeliveryFee extends Migration
     {
         Schema::table('tbldeliveryfee', function (Blueprint $table) {
             //
+            $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 
