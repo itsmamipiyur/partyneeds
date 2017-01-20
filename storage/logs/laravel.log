@@ -9520,3 +9520,69 @@ Stack trace:
 #12 C:\Users\MrkAngl\Desktop\partyneeds\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #13 {main}
 >>>>>>> 4cde73b507436f350291a7b880af9a7bc7120b50
+[2017-01-17 06:51:04] local.ERROR: exception 'PDOException' with message 'SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'created_at'' in C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php:480
+Stack trace:
+#0 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(480): PDOStatement->execute()
+#1 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'alter table `tb...', Array)
+#2 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('alter table `tb...', Array, Object(Closure))
+#3 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('alter table `tb...', Array, Object(Closure))
+#4 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\Blueprint.php(83): Illuminate\Database\Connection->statement('alter table `tb...')
+#5 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(229): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#6 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(130): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#7 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(237): Illuminate\Database\Schema\Builder->table('tblfoodcategory', Object(Closure))
+#8 C:\Users\itsma\Desktop\sad_prog\partyneeds\database\migrations\2017_01_15_162615_add_timestamp_to_FoodCategory.php(19): Illuminate\Support\Facades\Facade::__callStatic('table', Array)
+#9 C:\Users\itsma\Desktop\sad_prog\partyneeds\database\migrations\2017_01_15_162615_add_timestamp_to_FoodCategory.php(19): Illuminate\Support\Facades\Schema::table('tblfoodcategory', Object(Closure))
+#10 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(373): AddTimestampToFoodCategory->up()
+#11 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(380): Illuminate\Database\Migrations\Migrator->Illuminate\Database\Migrations\{closure}()
+#12 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(162): Illuminate\Database\Migrations\Migrator->runMigration(Object(AddTimestampToFoodCategory), 'up')
+#13 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(130): Illuminate\Database\Migrations\Migrator->runUp('C:\\Users\\itsma\\...', 3, false)
+#14 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(97): Illuminate\Database\Migrations\Migrator->runMigrationList(Array, Array)
+#15 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php(66): Illuminate\Database\Migrations\Migrator->run(Array, Array)
+#16 [internal function]: Illuminate\Database\Console\Migrations\MigrateCommand->fire()
+#17 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Container\Container.php(508): call_user_func_array(Array, Array)
+#18 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#19 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\symfony\console\Command\Command.php(254): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#20 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\symfony\console\Application.php(821): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\symfony\console\Application.php(187): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\MigrateCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\symfony\console\Application.php(118): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(121): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\Users\itsma\Desktop\sad_prog\partyneeds\artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 {main}
+
+Next exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'created_at' (SQL: alter table `tblfoodcategory` add `created_at` timestamp null, add `updated_at` timestamp null, add `deleted_at` timestamp null)' in C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Stack trace:
+#0 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('alter table `tb...', Array, Object(Closure))
+#1 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('alter table `tb...', Array, Object(Closure))
+#2 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\Blueprint.php(83): Illuminate\Database\Connection->statement('alter table `tb...')
+#3 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(229): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#4 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(130): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#5 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(237): Illuminate\Database\Schema\Builder->table('tblfoodcategory', Object(Closure))
+#6 C:\Users\itsma\Desktop\sad_prog\partyneeds\database\migrations\2017_01_15_162615_add_timestamp_to_FoodCategory.php(19): Illuminate\Support\Facades\Facade::__callStatic('table', Array)
+#7 C:\Users\itsma\Desktop\sad_prog\partyneeds\database\migrations\2017_01_15_162615_add_timestamp_to_FoodCategory.php(19): Illuminate\Support\Facades\Schema::table('tblfoodcategory', Object(Closure))
+#8 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(373): AddTimestampToFoodCategory->up()
+#9 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(380): Illuminate\Database\Migrations\Migrator->Illuminate\Database\Migrations\{closure}()
+#10 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(162): Illuminate\Database\Migrations\Migrator->runMigration(Object(AddTimestampToFoodCategory), 'up')
+#11 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(130): Illuminate\Database\Migrations\Migrator->runUp('C:\\Users\\itsma\\...', 3, false)
+#12 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(97): Illuminate\Database\Migrations\Migrator->runMigrationList(Array, Array)
+#13 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php(66): Illuminate\Database\Migrations\Migrator->run(Array, Array)
+#14 [internal function]: Illuminate\Database\Console\Migrations\MigrateCommand->fire()
+#15 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Container\Container.php(508): call_user_func_array(Array, Array)
+#16 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#17 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\symfony\console\Command\Command.php(254): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\symfony\console\Application.php(821): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#20 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\symfony\console\Application.php(187): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\MigrateCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\symfony\console\Application.php(118): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(121): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\Users\itsma\Desktop\sad_prog\partyneeds\artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 {main}  
+[2017-01-17 08:14:49] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Drink' not found' in C:\Users\itsma\Desktop\sad_prog\partyneeds\app\Http\Controllers\DrinkController.php:29
+Stack trace:
+#0 {main}  
+[2017-01-17 08:45:44] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=', expecting ']'' in C:\Users\itsma\Desktop\sad_prog\partyneeds\app\Http\Controllers\DrinkController.php:56
+Stack trace:
+#0 {main}  
+[2017-01-17 08:46:04] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '.'' in C:\Users\itsma\Desktop\sad_prog\partyneeds\app\Http\Controllers\DrinkController.php:56
+Stack trace:
+#0 {main}  
