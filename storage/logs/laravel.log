@@ -8996,6 +8996,10 @@ Stack trace:
 #50 C:\Users\itsma\Desktop\sad_prog\partyneeds\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #51 C:\Users\itsma\Desktop\sad_prog\partyneeds\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #52 C:\Users\itsma\Desktop\sad_prog\partyneeds\server.php(21): require_once('C:\\Users\\itsma\\...')
+#53 {main}  
+
+
+=======
 #53 {main}
 
 [2017-01-15 16:30:00] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Staff' not found' in C:\Users\user\Desktop\partyneeds\partyneeds\app\Http\Controllers\StaffController.php:30
@@ -9004,6 +9008,7 @@ Stack trace:
 
 [2017-01-15 12:14:19] local.ERROR: PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
  in C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:119
+>>>>>>> 2ccbbe5ae36b3e0b79fbfe7439a65a24632b03a2
 Stack trace:
 #0 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(119): PDO->__construct('mysql:host=127....', 'root', '', Array)
 #1 C:\Users\MrkAngl\Desktop\partyneeds\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(56): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'root', '', Array)

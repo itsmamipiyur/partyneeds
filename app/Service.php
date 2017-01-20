@@ -13,4 +13,5 @@ protected $table = 'tblservice';
 protected $primaryKey = 'strServId';
 protected $fillable = ['strServName', 'strServServType', 'txtServDesc', 'dblServRate'];
 protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+protected $casts = ['strServId' => 'string'];
 }
