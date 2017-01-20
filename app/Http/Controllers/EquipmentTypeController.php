@@ -60,10 +60,10 @@ class EquipmentTypeController extends Controller
       $equipmentType = new EquipmentType;
       $equipmentType->strEquiTypeId = $request->equipment_type_id;
       $equipmentType->strEquiTypeName = $request->equipment_type_name;
-      $equipmentType->txtEquiTypeDesc = $request->equipment_type_desc;
+      $equipmentType->txtEquiTypeDesc = $request->equipment_type_description;
       $equipmentType->save();
 
-      return redirect('equipment')->with('alert-success', 'Equipment Type was successfully saved.');
+      return redirect('equipmentType')->with('alert-success', 'Equipment Type was successfully saved.');
     }
 
     /**
@@ -115,7 +115,7 @@ class EquipmentTypeController extends Controller
         $name = $equipmentType->strEquiTypeName;
         $equipmentType->delete();
 
-        return redirect('equipment')->with('alert-success', 'Equipment Type '. $name .' was successfully deleted.');
+        return redirect('equipmentType')->with('alert-success', 'Equipment Type '. $name .' was successfully deleted.');
     }
 
     public function equipmentType_update(Request $request)
@@ -126,10 +126,10 @@ class EquipmentTypeController extends Controller
       $this->validate($request, $rules);
       $equipmentType = EquipmentType::find($id);
       $equipmentType->strEquiTypeName = $request->equipment_type_name;
-      $equipmentType->txtEquiTypeDesc = $request->equipment_type_desc;
+      $equipmentType->txtEquiTypeDesc = $request->equipment_type_description;
       $equipmentType->save();
 
-      return redirect('equipment')->with('alert-success', 'Equipment Type ' . $id . ' was successfully updated.');
+      return redirect('equipmentType')->with('alert-success', 'Equipment Type ' . $id . ' was successfully updated.');
     }
 
     public function equipmentType_restore(Request $request)
@@ -138,6 +138,6 @@ class EquipmentTypeController extends Controller
       $equipmentType = EquipmentType::onlyTrashed()->where('strEquiTypeId', '=', $id)->firstOrFail();
       $equipmentType->restore();
 
-      return redirect('equipment')->with('alert-success', 'Equipment Type ' . $id . ' was successfully restored.');
+      return redirect('equipmentType')->with('alert-success', 'Equipment Type ' . $id . ' was successfully restored.');
     }
 }

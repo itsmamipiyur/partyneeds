@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\FoodCategory;
 use App\Food;
+use Response;
 
 
 class FoodController extends Controller
@@ -82,6 +83,12 @@ class FoodController extends Controller
     public function show($id)
     {
         //
+        $food = Food::find($id);
+        return Response::json(['strFoodId' => $food->strFoodId,
+                              'strFoodName' => $food->strFoodName,
+                              'txtFoodDesc' => $food->txtFoodDesc,
+                              'strFoodCateName' => $food->foodCategory->strFoodCateName]);
+
     }
 
     /**

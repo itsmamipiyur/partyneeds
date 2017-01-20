@@ -53,7 +53,8 @@ class FoodCategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $rules = ['food_category_name' => 'required | max:100'];
+        $rules = ['category_name' => 'required | max:100',
+                  'category_id' => 'required'];
 
         $this->validate($request, $rules);
         $foodCategory = new foodCategory;

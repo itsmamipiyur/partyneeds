@@ -21,40 +21,6 @@
 <div class="row">
   <div class="panel panel-primary">
     <div class="panel-heading">
-<<<<<<< HEAD
-      <h3 class="panel-title">Food Category</h3>
-    </div>
-    <div class="panel-body">
-      <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#createFoodCategory">Add Food Category</button>
-      <br>
-      <table class="table table-hover" id="tblBranch">
-        <thead>
-          <tr>
-            <th>Food Category ID</th>
-            <th>Food Category Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>FOODCATE0001</td>
-            <td>Chicken</td>
-            <td>
-              lol
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-=======
->>>>>>> 8da6c17f15626e26be05e35e985b51aed7c4e593
       <h3 class="panel-title">Food List</h3>
     </div>
     <div class="panel-body">
@@ -82,16 +48,7 @@
         <tbody>
           @if(count($foods) === 0)
           <tr>
-<<<<<<< HEAD
-            <td>FOOD0001</td>
-            <td>Menudo</td>
-            <td>Beef</td>
-            <td>
-              lol
-            </td>
-=======
             <td colspan="7" align="center"><strong>Nothing to show</strong></td>
->>>>>>> 8da6c17f15626e26be05e35e985b51aed7c4e593
           </tr>
           @else
             @foreach($foods as $food)
@@ -232,17 +189,11 @@
             </div>
         @endif
 
-<<<<<<< HEAD
-        {!! Form::open(['url' => '/foodcategory']) !!}
-          <div class="form-group">
-          {{ Form::label('food_category_name', 'Food Category Name') }}
-          {{ Form::text('food_category_name', '', ['placeholder' => 'Example: Chicken', 'class' => 'form-control']) }}
-=======
+
         {!! Form::open(['url' => '/food']) !!}
           <div class="form-group">
           {{ Form::label('food_id', 'Food ID') }}
           {{ Form::text('food_id', $newID, ['placeholder' => 'Example: FOOD0000', 'class' => 'form-control']) }}
->>>>>>> 8da6c17f15626e26be05e35e985b51aed7c4e593
           </div>
 
           <div class="form-group">
@@ -251,10 +202,6 @@
           </div>
 
           <div class="form-group">
-<<<<<<< HEAD
-          {{ Form::label('food_category_description', 'Food Category Description') }}
-          {{ Form::textarea('food_category_description', '', ['placeholder' => 'Type the description', 'class' => 'form-control']) }}
-=======
           {{ Form::label('food_description', 'Food Description') }}
           {{ Form::text('food_description', '', ['placeholder' => 'Type Food Description', 'class' => 'form-control']) }}
           </div>
@@ -262,12 +209,47 @@
           <div class="control-group">
           {{ Form::label('food_category', 'Food Category', ['class' => 'control-label']) }}
           {{ Form::select('food_category', $foodCategories, null, ['placeholder' => 'Choose Food Category', 'class' => 'form-control', 'id' => 'category']) }}
->>>>>>> 8da6c17f15626e26be05e35e985b51aed7c4e593
           </div>
         </div>
       <div class="modal-footer">
         {{ Form::button('Submit', ['type' => 'submit', 'class' => 'btn btn-info', 'id' => 'btn-save']) }}
       {!! Form::close() !!}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="showFood" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Food Details</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+          {{ Form::label('food_id', 'Food ID') }}
+          {{ Form::text('food_id', '', ['class' => 'form-control', 'id' => 'foodId', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('food_name', 'Food Name') }}
+          {{ Form::text('food_name', '', ['class' => 'form-control', 'id' => 'foodName', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('food_category', 'Food Category') }}
+          {{ Form::text('food_category', '', ['class' => 'form-control', 'id' => 'foodCate', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('food_description', 'Description') }}
+          {{ Form::textarea('food_description', '', ['class' => 'form-control', 'id' => 'foodDesc', 'disabled' => 'true']) }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -303,7 +285,7 @@
 			});
 			table.draw();
 
-      var url = "{{ url('/foodType') }}";
+      var url = '/food';
       var bid = 0;
 
       $('.open-detail').click(function(){
@@ -313,10 +295,11 @@
         $.get(url + '/' + id, function (data) {
             //success data
             console.log(data);
-            $('#equiTypeId').val(data.strFoodTypeId);
-            $('#equiTypeName').val(data.strFoodTypeName);
-            $('#equiTypeDesc').val(data.txtFoodTypeDesc);
-            $('#showEquiType').modal('show');
+            $('#foodId').val(data.strFoodId);
+            $('#foodName').val(data.strFoodName);
+            $('#foodDesc').val(data.txtFoodDesc);
+            $('#foodCate').val(data.strFoodCateName);
+            $('#showFood').modal('show');
         })
       });
     });

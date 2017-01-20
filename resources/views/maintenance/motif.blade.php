@@ -133,7 +133,7 @@
 
             <div class="form-group">
             {{ Form::label('motif_description', 'Description') }}
-            {{ Form::textarea('motif_description', $motif->strMotiDesc, ['placeholder' => 'Type Equipment Type Description', 'class' => 'form-control']) }}
+            {{ Form::textarea('motif_description', $motif->strMotiDesc, ['placeholder' => 'Type Motif Description', 'class' => 'form-control']) }}
             </div>
         </div>
         <div class="modal-footer">
@@ -192,6 +192,37 @@
     </div>
   </div>
 </div>
+
+<div id="showMotif" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Motif Details</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+          {{ Form::label('motif_id', 'Motif ID') }}
+          {{ Form::text('motif_id', '', ['class' => 'form-control', 'id' => 'motifId', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('motif_name', 'Motif Name') }}
+          {{ Form::text('motif_name', '', ['class' => 'form-control', 'id' => 'motifName', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('motif_description', 'Description') }}
+          {{ Form::textarea('motif_description', '', ['class' => 'form-control', 'id' => 'motifDesc', 'disabled' => 'true']) }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('js')
@@ -230,11 +261,10 @@
         $.get(url + '/' + id, function (data) {
             //success data
             console.log(data);
-            $('#stafId').val(data.strStafId);
-            $('#stafFirst').val(data.strStafFirst);
-            $('#stafMiddle').val(data.strStafMiddle);
-            $('#stafLast').val(data.strStafLast);
-            $('#showDetail').modal('show');
+            $('#motifId').val(data.strMotiId);
+            $('#motifName').val(data.strMotiName);
+            $('#motifDesc').val(data.txtMotiDesc);
+            $('#showMotif').modal('show');
         })
       });
     });

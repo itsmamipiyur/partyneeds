@@ -25,6 +25,13 @@
     </div>
     <div class="panel-body">
       <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#createDrink">Add Drink</button>
+      <br><br>
+      <div class="pull-right">
+        <label class="checkbox-inline">
+      			<input type="checkbox" id="show_deleted">
+      			Show Deleted Items
+      		</label>
+      </div>
       <br>
       <table class="table table-hover" id="tblDrink">
         <thead>
@@ -51,7 +58,7 @@
                 <td>{{ $drink->strDrinkName }}</td>
                 <td>{{ $drink->created_at }}</td>
                 <td>{{ $drink->updated_at }}</td>
-                <td>{{ $drink->deleted_At }}</td>
+                <td>{{ $drink->deleted_at }}</td>
                 <td class="btn-group clearfix" align="center" nowrap>
                    <button type="button" value="{{ $drink->strDrinkId }}" class="btn btn-success open-detail"><span class="glyphicon glyphicon-eye-open"></span></button>
                    <a href="#edit{{ $drink->strDrinkId }}" class="btn btn-info edit-detail" onclick="$('#edit{{$drink->strDrinkId}}').modal('show')"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -69,6 +76,82 @@
     </div>
   </div>
 </div>
+
+@if(count($drinks) > 0)
+@foreach($drinks as $drink)
+<div id="del{{$drink->strDrinkId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Drink</h4>
+        </div>
+        <div class="modal-body">
+          <h5>Are you sure to delete <strong>{{ $drink->strDrinkName }}</strong>?</h5>
+        </div>
+        <div class="modal-footer">
+
+          {!! Form::open(['url' => '/drink/' . $drink->strDrinkId, 'method' => 'delete']) !!}
+            {{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-danger']) }}
+          {!! Form::close() !!}
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="restore{{$drink->strDrinkId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Restore Drink</h4>
+        </div>
+        <div class="modal-body">
+          <h5>Are you sure to restore <strong>{{ $drink->strDrinkName }}</strong>?</h5>
+        </div>
+        <div class="modal-footer">
+          {!! Form::open(['url' => '/drink/drink_restore']) !!}
+            {{ Form::hidden('drink_id', $drink->strDrinkId) }}
+            {{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-warning']) }}
+          {!! Form::close() !!}
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="edit{{$drink->strDrinkId}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Drink</h4>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['url' => 'drink/drink_update/']) !!}
+          {{ Form::hidden('drink_id', $drink->strDrinkId) }}
+          <div class="form-group">
+          {{ Form::label('drink_name', 'Drink Name') }}
+          {{ Form::text('drink_name', $drink->strDrinkName, ['placeholder' => 'Type Drink Name', 'class' => 'form-control']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('drink_description', 'Description') }}
+          {{ Form::textarea('drink_description', $drink->txtDrinkDesc, ['placeholder' => 'Type Drink Description', 'class' => 'form-control']) }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        {{ Form::button('Update', ['type' => 'submit', 'class' => 'btn btn-info', 'id' => 'btn-save']) }}
+      {!! Form::close() !!}
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+@endif
+
 
 <div id="createDrink" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -114,6 +197,37 @@
     </div>
   </div>
 </div>
+
+<div id="showDrink" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Drink Details</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+          {{ Form::label('equipment_type_id', 'Drink ID') }}
+          {{ Form::text('equipment_type_id', '', ['class' => 'form-control', 'id' => 'drinkId', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('equipment_type_name', 'Drink Name') }}
+          {{ Form::text('equipment_type_name', '', ['class' => 'form-control', 'id' => 'drinkName', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('equipment_type_desc', 'Description') }}
+          {{ Form::textarea('equipment_type_desc', '', ['class' => 'form-control', 'id' => 'drinkDesc', 'disabled' => 'true']) }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('js')
@@ -131,14 +245,14 @@
         $('#maintenance').collapse("hide");
       });
 
-      var table = $('#tbldrink').DataTable();
+      var table = $('#tblDrink').DataTable();
 
-      $('#show_deletedType').on('change', function () {
+      $('#show_deleted').on('change', function () {
 				table.draw();
 			});
 
       $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
-				var show_deleted = $('#show_deletedType:checked').length;
+				var show_deleted = $('#show_deleted:checked').length;
 				if (!show_deleted) return aData[4] == '';
 				return true;
 			});
@@ -154,10 +268,10 @@
         $.get(url + '/' + id, function (data) {
             //success data
             console.log(data);
-            $('#equiTypeId').val(data.strDrinkId);
-            $('#equiTypeName').val(data.strDrinkName);
-            $('#equiTypeDesc').val(data.txtEquiTypeDesc);
-            $('#showEquiType').modal('show');
+            $('#drinkId').val(data.strDrinkId);
+            $('#drinkName').val(data.strDrinkName);
+            $('#drinkDesc').val(data.txtDrinkDesc);
+            $('#showDrink').modal('show');
         })
       });
     });

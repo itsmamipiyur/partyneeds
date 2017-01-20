@@ -110,7 +110,7 @@
         </div>
         <div class="modal-footer">
           {!! Form::open(['url' => '/equipmentType/equipmentType_restore']) !!}
-            {{ Form::hidden('event_type_id', $equipmentType->strEquiTypeId) }}
+            {{ Form::hidden('equipment_type_id', $equipmentType->strEquiTypeId) }}
             {{ Form::button('Yes', ['type'=>'submit', 'class'=> 'btn btn-warning']) }}
           {!! Form::close() !!}
           <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
@@ -129,15 +129,15 @@
       </div>
       <div class="modal-body">
         {!! Form::open(['url' => 'equipmentType/equipmentType_update/']) !!}
-          {{ Form::hidden('event_type_id', $equipmentType->strEquiTypeId) }}
+          {{ Form::hidden('equipment_type_id', $equipmentType->strEquiTypeId) }}
           <div class="form-group">
-          {{ Form::label('event_type_name', 'Equipment Type Name') }}
-          {{ Form::text('event_type_name', $equipmentType->strEquiTypeName, ['placeholder' => 'Type Equipment Type Name', 'class' => 'form-control']) }}
+          {{ Form::label('equipment_type_name', 'Equipment Type Name') }}
+          {{ Form::text('equipment_type_name', $equipmentType->strEquiTypeName, ['placeholder' => 'Type Equipment Type Name', 'class' => 'form-control']) }}
           </div>
 
           <div class="form-group">
-          {{ Form::label('event_type_desc', 'Description') }}
-          {{ Form::textarea('event_type_desc', $equipmentType->strEquiTypeDesc, ['placeholder' => 'Type Equipment Type Description', 'class' => 'form-control']) }}
+          {{ Form::label('equipment_type_description', 'Description') }}
+          {{ Form::textarea('equipment_type_description', $equipmentType->txtEquiTypeDesc, ['placeholder' => 'Type Equipment Type Description', 'class' => 'form-control']) }}
           </div>
       </div>
       <div class="modal-footer">
@@ -160,18 +160,18 @@
       </div>
       <div class="modal-body">
           <div class="form-group">
-          {{ Form::label('event_type_id', 'Equipment Type ID') }}
-          {{ Form::text('event_type_id', '', ['class' => 'form-control', 'id' => 'equiTypeId', 'disabled' => 'true']) }}
+          {{ Form::label('equipment_type_id', 'Equipment Type ID') }}
+          {{ Form::text('equipment_type_id', '', ['class' => 'form-control', 'id' => 'equiTypeId', 'disabled' => 'true']) }}
           </div>
 
           <div class="form-group">
-          {{ Form::label('event_type_name', 'Equipment Type Name') }}
-          {{ Form::text('event_type_name', '', ['class' => 'form-control', 'id' => 'equiTypeName', 'disabled' => 'true']) }}
+          {{ Form::label('equipment_type_name', 'Equipment Type Name') }}
+          {{ Form::text('equipment_type_name', '', ['class' => 'form-control', 'id' => 'equiTypeName', 'disabled' => 'true']) }}
           </div>
 
           <div class="form-group">
-          {{ Form::label('event_type_desc', 'Description') }}
-          {{ Form::textarea('event_type_desc', '', ['class' => 'form-control', 'id' => 'equiTypeDesc', 'disabled' => 'true']) }}
+          {{ Form::label('equipment_type_desc', 'Description') }}
+          {{ Form::textarea('equipment_type_desc', '', ['class' => 'form-control', 'id' => 'equiTypeDesc', 'disabled' => 'true']) }}
           </div>
       </div>
       <div class="modal-footer">
@@ -203,19 +203,19 @@
 
         {!! Form::open(['url' => '/equipmentType']) !!}
           <div class="form-group">
-          {{ Form::label('event_type_id', 'Equipment Type ID') }}
-          {{ Form::text('event_type_id', $newTypeID, ['class' => 'form-control']) }}
+          {{ Form::label('equipment_type_id', 'Equipment Type ID') }}
+          {{ Form::text('equipment_type_id', $newTypeID, ['class' => 'form-control']) }}
           </div>
 
           <div class="form-group">
-          {{ Form::label('event_type_name', 'Equipment Type Name') }}
-          {{ Form::text('event_type_name', '', ['placeholder' => 'Example: Serving Equipment', 'class' => 'form-control']) }}
+          {{ Form::label('equipment_type_name', 'Equipment Type Name') }}
+          {{ Form::text('equipment_type_name', '', ['placeholder' => 'Example: Serving Equipment', 'class' => 'form-control']) }}
           </div>
 
 
           <div class="form-group">
-          {{ Form::label('event_type_description', 'Equipment Type Description') }}
-          {{ Form::textarea('event_type_description', '', ['placeholder' => 'Type the description', 'class' => 'form-control']) }}
+          {{ Form::label('equipment_type_description', 'Equipment Type Description') }}
+          {{ Form::textarea('equipment_type_description', '', ['placeholder' => 'Type the description', 'class' => 'form-control']) }}
           </div>
         </div>
       <div class="modal-footer">

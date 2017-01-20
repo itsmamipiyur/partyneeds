@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Drink;
+use Response;
 
 class DrinkController extends Controller
 {
@@ -75,6 +76,8 @@ class DrinkController extends Controller
     public function show($id)
     {
         //
+        $drink = Drink::find($id);
+        return Response::json($drink);
     }
 
     /**
@@ -106,8 +109,36 @@ class DrinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+     public function destroy($id)
+     {
+         //
+         $drink = Drink::find($id);
+         $name = $drink->strDrinkName;
+         $drink->delete();
+
+         return redirect('drink')->with('alert-success', 'Drink '. $name .' was successfully deleted.');
+     }
+
+     public function drink_update(Request $request)
+     {
+       $rules = ['drink_name' => 'required | max:100'];
+       $id = $request->drink_id;
+
+       $this->validate($request, $rules);
+       $drink = Drink::find($id);
+       $drink->strDrinkName = $request->drink_name;
+       $drink->txtDrinkDesc = $request->drink_description;
+       $drink->save();
+
+       return redirect('drink')->with('alert-success', 'Drink ' . $id . ' was successfully updated.');
+     }
+
+     public function drink_restore(Request $request)
+     {
+       $id = $request->drink_id;
+       $drink = Drink::onlyTrashed()->where('strDrinkId', '=', $id)->firstOrFail();
+       $drink->restore();
+
+       return redirect('drink')->with('alert-success', 'Drink ' . $id . ' was successfully restored.');
+     }
 }

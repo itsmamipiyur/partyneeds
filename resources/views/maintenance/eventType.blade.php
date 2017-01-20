@@ -37,22 +37,13 @@
           <tr>
             <th>Event Type ID</th>
             <th>Event Type Name</th>
-
             <th>Created At</th>
             <th>Updated At</th>
             <th>Deleted At</th>
-
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>EVNTTYPE0001</td>
-            <td>Birthday</td>
-            <td>
-              lol
-            </td>
-          </tr>
           @if(count($eventTypes) == 0)
             <tr>
               <td colspan="6" align="center"><strong>Nothing to show</strong></td>

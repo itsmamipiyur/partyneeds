@@ -142,7 +142,7 @@
 
             <div class="control-group">
             {{ Form::label('equipment_type', 'Equipment Type', ['class' => 'control-label']) }}
-            {{ Form::select('equipment_type', $equiTypes, $equipment->strEquiTypeId, ['placeholder' => 'Choose Equipment Type', 'class' => 'form-control', 'id' => 'category']) }}
+            {{ Form::select('equipment_type', $equiTypes, $equipment->strEquiEquiTypeId, ['placeholder' => 'Choose Equipment Type', 'class' => 'form-control', 'id' => 'category']) }}
             </div>
 
             <div class="form-group">
@@ -210,6 +210,42 @@
   </div>
 </div>
 
+<div id="showEqui" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Equipment Details</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+          {{ Form::label('equipment_id', 'Equipment ID') }}
+          {{ Form::text('equipment_id', '', ['class' => 'form-control', 'id' => 'equipmentId', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('equipment_name', 'Equipment Name') }}
+          {{ Form::text('equipment_name', '', ['class' => 'form-control', 'id' => 'equipmentName', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('equipment_type', 'Equipment Type') }}
+          {{ Form::text('equipment_type', '', ['class' => 'form-control', 'id' => 'equipmentTypess', 'disabled' => 'true']) }}
+          </div>
+
+          <div class="form-group">
+          {{ Form::label('equipment_description', 'Description') }}
+          {{ Form::textarea('equipment_description', '', ['class' => 'form-control', 'id' => 'equipmentDesc', 'disabled' => 'true']) }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('js')
@@ -239,6 +275,24 @@
 				return true;
 			});
 			table.draw();
+
+      var url = "{{ url('/equipment') }}";
+      var bid = 0;
+
+      $('.open-detail').click(function(){
+        var id = $(this).val();
+        console.log(id);
+
+        $.get(url + '/' + id, function (data) {
+            //success data
+            console.log(data);
+            $('#equipmentId').val(data.strEquiId);
+            $('#equipmentName').val(data.strEquiName);
+            $('#equipmentDesc').val(data.txtEquiDesc);
+            $('#equipmentTypess').val(data.strEquiTypeName);
+            $('#showEqui').modal('show');
+        })
+      });
     });
   </script>
   @endsection

@@ -53,6 +53,9 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::post('/motif/motif_update', 'MotifController@motif_update');
     Route::post('/motif/motif_restore', 'MotifController@motif_restore');
+
+    Route::post('/drink/drink_update', 'DrinkController@drink_update');
+    Route::post('/drink/drink_restore', 'DrinkController@drink_restore');
 });
 
 Auth::routes();

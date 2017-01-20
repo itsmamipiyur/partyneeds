@@ -64,12 +64,12 @@
                                 <li><a href="{{ url('/foodCategory') }}">Food</a></li>
                                 <li><a href="{{ url('/equipment') }}">Equipment</a></li>
                                 <li><a href="{{ url('/equipmentTypes') }}">Equipment Type</a></li>
-                                <li><a href="{{ url('/staff') }}">Staff</a></li>
-                                <li><a href="{{ url('/package') }}">Package</a></li>
+                                <!--<li><a href="{{ url('/staff') }}">Staff</a></li>-->
+                                <!--<li><a href="{{ url('/package') }}">Package</a></li>-->
                                 <li><a href="{{ url('/eventType') }}">Event Type</a></li>
                                 <li><a href="{{ url('/motif') }}">Motif</a></li>
-                                <li><a href="{{ url('/menu') }}">Menu</a></li>
-                                <li><a href="{{ url('/menuType') }}">Menu Type</a></li>
+                                <!--<li><a href="{{ url('/menu') }}">Menu</a></li>
+                                <li><a href="{{ url('/menuType') }}">Menu Type</a></li>-->
                                 <li><a href="{{ url('/drink') }}">Drink</a></li>
                               </ul>
                           </li>
@@ -127,12 +127,12 @@
                           <li><a href="{{ url('/foodCategory') }}" id="foodCategory">Food Category</a></li>
                           <li><a href="{{ url('/equipment') }}" id="equipment">Equipment</a></li>
                           <li><a href="{{ url('/equipmentType') }}" id="equipmentType">Equipment Type</a></li>
-                          <li><a href="{{ url('/staff') }}" id="staff">Staff</a></li>
-                          <li><a href="{{ url('/package') }}" id="package">Package</a></li>
+                          <!--<li><a href="{{ url('/staff') }}" id="staff">Staff</a></li>-->
+                          <!--<li><a href="{{ url('/package') }}" id="package">Package</a></li>-->
                           <li><a href="{{ url('/eventType') }}" id="eventType">Event Type</a></li>
-                          <li><a href="{{ url('/motif') }}" id="eventType">Motif</a></li>
-                          <li><a href="{{ url('/menu') }}" id="menu">Menu</a></li>
-                          <li><a href="{{ url('/menuType') }}" id="menuType">Menu Type</a></li>
+                          <li><a href="{{ url('/motif') }}" id="motif">Motif</a></li>
+                          <!--<li><a href="{{ url('/menu') }}" id="menu">Menu</a></li>
+                          <li><a href="{{ url('/menuType') }}" id="menuType">Menu Type</a></li>-->
                           <li><a href="{{ url('/drink') }}" id="drink">Drink</a></li>
                         </ul>
                       </div>

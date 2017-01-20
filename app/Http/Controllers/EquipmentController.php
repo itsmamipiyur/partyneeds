@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\EquipmentType;
 use App\Equipment;
+use Response;
 
 class EquipmentController extends Controller
 {
@@ -64,7 +65,7 @@ class EquipmentController extends Controller
       $equipment->strEquiId = trim($request->equipment_id);
       $equipment->strEquiName = trim($request->equipment_name);
       $equipment->txtEquiDesc = trim($request->equipment_description);
-      $equipment->strEquiTypeId = trim($request->equipment_type);
+      $equipment->strEquiEquiTypeId = trim($request->equipment_type);
       $equipment->save();
 
       return redirect('equipment')->with('alert-success', 'Equipment was successfully saved.');
@@ -79,6 +80,12 @@ class EquipmentController extends Controller
     public function show($id)
     {
         //
+        $equipment = Equipment::find($id);
+        return Response::json(['strEquiId' => $equipment->strEquiId,
+                              'strEquiName' => $equipment->strEquiName,
+                              'txtEquiDesc' => $equipment->txtEquiDesc,
+                              'strEquiTypeName' => $equipment->equipmentType->strEquiTypeName]);
+
     }
 
     /**
@@ -128,7 +135,7 @@ class EquipmentController extends Controller
       $equipment = Equipment::find($request->equipment_id);
       $equipment->strEquiName = trim($request->equipment_name);
       $equipment->txtEquiDesc = trim($request->equipment_description);
-      $equipment->strEquiTypeId = trim($request->equipment_type);
+      $equipment->strEquiEquiTypeId = trim($request->equipment_type);
       $equipment->save();
 
       return redirect('equipment')->with('alert-success', 'Equipment ' . $request->equipment_id . ' was successfully updated.');
