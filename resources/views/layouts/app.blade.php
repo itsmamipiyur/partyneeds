@@ -113,7 +113,7 @@
         @else
           <div class="container-fluid">
             <div class="row main">
-              <div class="col-md-3 hidden-sm hidden-xs">
+              <div class="col-md-3 hidden-sm hidden-xs side">
                 <div class="sidebar">
                   <ul class="menu-list nav">
                     <li><a href="{{ url('/home') }}" id="dashboard">DASHBOARD</a></li>
