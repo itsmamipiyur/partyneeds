@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Drink;
 
 class DrinkController extends Controller
 {
@@ -14,7 +15,22 @@ class DrinkController extends Controller
      */
     public function index()
     {
-        return view('maintenance/drink');
+      $ids = \DB::table('tbldrink')
+          ->select('strDrinkId')
+          ->orderBy('strDrinkId', 'desc')
+          ->first();
+
+      if ($ids == null) {
+        $newID = $this->smartCounter("DRK0000");
+      }else{
+        $newID = $this->smartCounter($ids->strDrinkId);
+      }
+
+      $drinks = Drink::withTrashed()->get();
+
+      return view('maintenance/drink')
+        ->with('newID', $newID)
+        ->with('drinks', $drinks);
     }
 
     /**
@@ -36,6 +52,18 @@ class DrinkController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = ['drink_id' => 'required',
+                  'drink_name' => 'required'];
+
+        $this->validate($request, $rules);
+        $drink = new Drink;
+        $drink->strDrinkId = $request->drink_id;
+        $drink->strDrinkName = $request->drink_name;
+        $drink->txtDrinkDesc = $request->drink_description;
+        $drink->save();
+
+        return redirect('drink')
+          ->with('alert-success', 'Drink was successfully added.');
     }
 
     /**

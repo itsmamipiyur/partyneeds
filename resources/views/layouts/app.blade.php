@@ -138,6 +138,7 @@
                       </div>
                     </li>
                     <li><a href="#transaction" data-toggle="collapse" id="transMenu">TRANSACTION</a></li>
+                    <li><a href="#transaction" data-toggle="collapse" id="transMenu">REPORTS</a></li>
                   </ul>
                 </div>
               </div>

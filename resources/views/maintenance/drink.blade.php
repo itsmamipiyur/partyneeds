@@ -1,10 +1,19 @@
 @extends('layouts.app')
 
-@section('content')
+@section('error')
+  @if ($alert = Session::get('alert-success'))
+    <div class="alert alert-success">
+        <strong>{{ $alert }}</strong>
+    </div>
+  @endif
+@endsection
+
 
 @section('title')
   Drink
 @endsection
+
+@section('content')
 
 <h2>maintenance/Drink</h2>
 <hr size="5">
@@ -17,7 +26,7 @@
     <div class="panel-body">
       <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#createDrink">Add Drink</button>
       <br>
-      <table class="table table-hover" id="tblBranch">
+      <table class="table table-hover" id="tblDrink">
         <thead>
           <tr>
             <th>Drink ID</th>
@@ -29,13 +38,32 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>DRNK0001</td>
-            <td>Iced Tea</td>
-            <td>
-              lol
-            </td>
-          </tr>
+          @if(count($drinks) == 0)
+            <tr>
+              <td colspan="6" align="center">
+                <strong>Nothing to show.</strong>
+              </td>
+            </tr>
+          @else
+            @foreach($drinks as $drink)
+              <tr>
+                <td>{{ $drink->strDrinkId }}</td>
+                <td>{{ $drink->strDrinkName }}</td>
+                <td>{{ $drink->created_at }}</td>
+                <td>{{ $drink->updated_at }}</td>
+                <td>{{ $drink->deleted_At }}</td>
+                <td class="btn-group clearfix" align="center" nowrap>
+                   <button type="button" value="{{ $drink->strDrinkId }}" class="btn btn-success open-detail"><span class="glyphicon glyphicon-eye-open"></span></button>
+                   <a href="#edit{{ $drink->strDrinkId }}" class="btn btn-info edit-detail" onclick="$('#edit{{$drink->strDrinkId}}').modal('show')"><span class="glyphicon glyphicon-pencil"></span></a>
+                   @if(is_null($drink->deleted_at))
+                    <a href="#del{{$drink->strDrinkId}}" class="btn btn-danger" onclick="$('#del{{$drink->strDrinkId}}').modal('show')"><span class="glyphicon glyphicon-trash"></span></button>
+                   @else
+                    <a href="#restore{{$drink->strDrinkId}}" class="btn btn-warning" onclick="$('#restore{{$drink->strDrinkId}}').modal('show')"><span class="glyphicon glyphicon-repeat"></span></button>
+                  @endif
+                </td>
+              </tr>
+            @endforeach
+          @endif
         </tbody>
       </table>
     </div>
@@ -64,6 +92,11 @@
 
         {!! Form::open(['url' => '/drink']) !!}
           <div class="form-group">
+          {{ Form::label('drink_id', 'Drink ID') }}
+          {{ Form::text('drink_id', $newID, ['placeholder' => 'Example: DNK0000', 'class' => 'form-control']) }}
+          </div>
+
+          <div class="form-group">
           {{ Form::label('drink_name', 'Drink Name') }}
           {{ Form::text('drink_name', '', ['placeholder' => 'Example: Iced Tea', 'class' => 'form-control']) }}
           </div>
@@ -81,8 +114,6 @@
     </div>
   </div>
 </div>
-
-
 @endsection
 
 @section('js')
@@ -100,7 +131,7 @@
         $('#maintenance').collapse("hide");
       });
 
-      var table = $('#tblEquipmentType').DataTable();
+      var table = $('#tbldrink').DataTable();
 
       $('#show_deletedType').on('change', function () {
 				table.draw();
@@ -113,7 +144,7 @@
 			});
 			table.draw();
 
-      var url = "{{ url('/equipmentType') }}";
+      var url = "{{ url('/drink') }}";
       var bid = 0;
 
       $('.open-detail').click(function(){
@@ -123,8 +154,8 @@
         $.get(url + '/' + id, function (data) {
             //success data
             console.log(data);
-            $('#equiTypeId').val(data.strEquiTypeId);
-            $('#equiTypeName').val(data.strEquiTypeName);
+            $('#equiTypeId').val(data.strDrinkId);
+            $('#equiTypeName').val(data.strDrinkName);
             $('#equiTypeDesc').val(data.txtEquiTypeDesc);
             $('#showEquiType').modal('show');
         })
